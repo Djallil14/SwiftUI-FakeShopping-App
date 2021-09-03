@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var productsList = ProductsListObject()
+    @ObservedObject var productsList: ProductsListObject
+    @ObservedObject var cart: CartViewModel
     let product: [Product] = Product.sampleProducts
     @State var pickedCategory: ProductListEndpoint = .all
     var body: some View {
@@ -22,45 +23,49 @@ struct HomeView: View {
                             .multilineTextAlignment(.center)
                             .blendMode(.overlay)
                             .padding()
-                        CustomPicker(action: {
-                            productsList.loadProducts(with: pickedCategory)
-                            print(pickedCategory)
-                        }, choosenCategory: $pickedCategory)
+                        CustomPicker(choosenCategory: $pickedCategory)
+                            .onChange(of: pickedCategory, perform: { value in
+                                    productsList.loadProducts(with: pickedCategory)
+                                    print(pickedCategory)
+                            })
                         if productsList.products != nil {
-                            ProductList(products: productsList.products!)
+                            ProductList(cart: cart, products: productsList.products!)
                         } else {
                             LoadingView(isLoading: productsList.isLoading, error: productsList.error){ productsList.loadProducts(with: pickedCategory)
                             }
                         }
                     }
+                    Spacer(minLength: 40)
                 }
             }.navigationBarTitleDisplayMode(.inline)
             .navigationTitle("ModernShopping")
             .navigationBarItems(leading: leadingBarItem, trailing: trailingBarItem)
         }.onAppear{
-            productsList.loadProducts(with: .jewelery)
+            productsList.loadProducts(with: .all)
         }
     }
     
     var leadingBarItem: some View {
         Button(action:{}){
-            Image(systemName:"gear")
+            Image(systemName:"slider.horizontal.3")
                 .imageScale(.large)
         }
     }
     var trailingBarItem: some View {
-        Button(action:{}){
+        NavigationLink(destination: CartView(cartProducts: cart)){
             Image(systemName:"cart")
                 .imageScale(.large)
                 .overlay(
                     VStack {
-                        ZStack {
-                            Circle().fill(Color.red)
-                            Text("1")
-                                .font(.caption)
-                                .accentColor(.white)
+                        if cart.cartProduct.count > 0 {
+                            ZStack {
+                                Circle().fill(Color.red)
+                                Text("\(cart.cartProduct.count)")
+                                    .font(.caption)
+                                    .accentColor(.white)
+                            }
+                            Spacer()
                         }
-                        Spacer()
                     }.offset(x: 10, y: -10)
                     
                 )
@@ -70,11 +75,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(productsList: ProductsListObject(), cart: CartViewModel())
     }
 }
 
-extension Color {
-    static let background: Color = Color("Background")
-    static let secondaryBackground: Color = Color("SecondaryBackground")
-}

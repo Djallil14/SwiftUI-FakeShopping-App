@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ProductView: View {
+    @ObservedObject var cart: CartViewModel
     let product: Product
     var body: some View {
         ZStack {
             Color.secondaryBackground.edgesIgnoringSafeArea(.top)
             VStack {
-                ProductImage(imageURL: product.imageURL)
+                ProductImage(cart: cart, imageURL: product.imageURL)
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.bottom)
                         .cornerRadius(25)
@@ -27,7 +28,7 @@ struct ProductView: View {
                             .font(.headline)
                         HStack(spacing: 2) {
                             Text("\(product.formatedRating)")
-                            Text("(\(product.rating.count))").font(.caption)
+                            Text("(\(product.rating.count ?? 0))").font(.caption)
                                 .foregroundColor(.secondary)
                                 .offset(y: 3)
                         }
@@ -37,7 +38,9 @@ struct ProductView: View {
                             .padding()
                             .multilineTextAlignment(.center)
                         Spacer()
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                        Button(action: {
+                            cart.addToCart(product: product)
+                        }){
                             HStack {
                                 Text("Add to cart").bold()
                             }
@@ -52,6 +55,7 @@ struct ProductView: View {
 }
 
 struct ProductImage: View {
+    @ObservedObject var cart: CartViewModel
     @StateObject private var imageLoader = ImageLoader()
     let imageURL: URL
     var body: some View {
@@ -85,18 +89,20 @@ struct ProductImage: View {
         }
     }
     var trailingBarItem: some View {
-        Button(action:{}){
+        NavigationLink(destination: CartView(cartProducts: cart)){
         Image(systemName:"cart")
             .imageScale(.large)
             .overlay(
                 VStack {
-                    ZStack {
-                        Circle().fill(Color.red)
-                        Text("1")
-                            .font(.caption)
-                            .accentColor(.white)
+                    if cart.cartProduct.count > 0 {
+                        ZStack {
+                            Circle().fill(Color.red)
+                            Text("\(cart.cartProduct.count)")
+                                .font(.caption)
+                                .accentColor(.white)
+                        }
+                        Spacer()
                     }
-                    Spacer()
                 }.offset(x: 10, y: -10)
             )
         }
@@ -104,6 +110,6 @@ struct ProductImage: View {
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductView(product: Product.sampleProducts[6])
+        ProductView(cart: CartViewModel(), product: Product.sampleProducts[6])
     }
 }

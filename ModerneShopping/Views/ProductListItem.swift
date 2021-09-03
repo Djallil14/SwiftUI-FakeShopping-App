@@ -20,7 +20,7 @@ struct ProductListItem: View {
             Text("\(product.price.format(f: ".2"))$").bold()
             HStack(spacing: 2) {
                 Text("\(product.formatedRating)").font(.caption)
-                Text("(\(product.rating.count))").font(.caption2)
+                Text("(\(product.rating.count ?? 0))").font(.caption2)
                     .foregroundColor(.secondary)
                     .offset(y: 3)
             }

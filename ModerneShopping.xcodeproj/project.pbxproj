@@ -27,6 +27,10 @@
 		9DACF96226E1CA6500AD45B7 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF96126E1CA6500AD45B7 /* ProductListViewModel.swift */; };
 		9DACF96426E1CBEA00AD45B7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF96326E1CBEA00AD45B7 /* LoadingView.swift */; };
 		9DACF96826E1CEE700AD45B7 /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF96726E1CEE700AD45B7 /* CustomPicker.swift */; };
+		9DACF96A26E1DB6400AD45B7 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF96926E1DB6400AD45B7 /* CartViewModel.swift */; };
+		9DACF96C26E2784600AD45B7 /* cart5.json in Resources */ = {isa = PBXBuildFile; fileRef = 9DACF96B26E2784600AD45B7 /* cart5.json */; };
+		9DACF96E26E2789200AD45B7 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF96D26E2789200AD45B7 /* Cart.swift */; };
+		9DACF97026E27D3B00AD45B7 /* Extension+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF96F26E27D3B00AD45B7 /* Extension+Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		9DACF96126E1CA6500AD45B7 /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 		9DACF96326E1CBEA00AD45B7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		9DACF96726E1CEE700AD45B7 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
+		9DACF96926E1DB6400AD45B7 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		9DACF96B26E2784600AD45B7 /* cart5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cart5.json; sourceTree = "<group>"; };
+		9DACF96D26E2789200AD45B7 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		9DACF96F26E27D3B00AD45B7 /* Extension+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Colors.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,7 @@
 				9DACF94326E02B1100AD45B7 /* Extensions */,
 				9DACF93626E0297C00AD45B7 /* Assets.xcassets */,
 				9DACF94626E02B7F00AD45B7 /* products.json */,
+				9DACF96B26E2784600AD45B7 /* cart5.json */,
 				9DACF93B26E0297C00AD45B7 /* Info.plist */,
 				9DACF93826E0297C00AD45B7 /* Preview Content */,
 			);
@@ -110,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				9DACF94426E02B2700AD45B7 /* Bundle+LoadAndDecode.swift */,
+				9DACF96F26E27D3B00AD45B7 /* Extension+Colors.swift */,
 				9DACF94826E02E4400AD45B7 /* ImageLoader.swift */,
 			);
 			path = Extensions;
@@ -129,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				9DACF94126E02A1B00AD45B7 /* Product.swift */,
+				9DACF96D26E2789200AD45B7 /* Cart.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -138,6 +149,7 @@
 			children = (
 				9DACF95F26E1C78100AD45B7 /* APIServices.swift */,
 				9DACF96126E1CA6500AD45B7 /* ProductListViewModel.swift */,
+				9DACF96926E1DB6400AD45B7 /* CartViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DACF94726E02B7F00AD45B7 /* products.json in Resources */,
+				9DACF96C26E2784600AD45B7 /* cart5.json in Resources */,
 				9DACF93A26E0297C00AD45B7 /* Preview Assets.xcassets in Resources */,
 				9DACF93726E0297C00AD45B7 /* Assets.xcassets in Resources */,
 			);
@@ -237,10 +250,13 @@
 			files = (
 				9DACF95426E14C2C00AD45B7 /* HomeView.swift in Sources */,
 				9DACF94226E02A1B00AD45B7 /* Product.swift in Sources */,
+				9DACF96E26E2789200AD45B7 /* Cart.swift in Sources */,
 				9DACF96826E1CEE700AD45B7 /* CustomPicker.swift in Sources */,
 				9DACF95E26E1C55400AD45B7 /* CartListView.swift in Sources */,
 				9DACF94C26E0373900AD45B7 /* ShoppingButtonStyle.swift in Sources */,
 				9DACF95726E1A41600AD45B7 /* MainView.swift in Sources */,
+				9DACF97026E27D3B00AD45B7 /* Extension+Colors.swift in Sources */,
+				9DACF96A26E1DB6400AD45B7 /* CartViewModel.swift in Sources */,
 				9DACF96426E1CBEA00AD45B7 /* LoadingView.swift in Sources */,
 				9DACF94526E02B2700AD45B7 /* Bundle+LoadAndDecode.swift in Sources */,
 				9DACF94926E02E4400AD45B7 /* ImageLoader.swift in Sources */,

@@ -25,14 +25,13 @@ extension Product {
         for _ in 0...Int(rating.rate){
             result.append("⭐️")
         }
-        
         return result
     }
 }
 
 struct Rating: Codable {
     let rate: Double
-    let count: Int
+    let count: Int?
 }
 
 extension Product {

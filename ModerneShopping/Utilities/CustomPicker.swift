@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct CustomPicker: View {
-    var action: () -> Void
     @Binding var choosenCategory: ProductListEndpoint
     var body: some View {
         HStack(spacing:0){
             ForEach(ProductListEndpoint.allCases, id: \.self){category in
                 VStack {
-                    Button(action: action){
+                    Button(action: {
+                        withAnimation(.spring()){
+                            choosenCategory = category
+                        }
+                    }){
                         Text(category.rawValue)
                             .bold()
                             .font(.caption)
@@ -23,7 +26,8 @@ struct CustomPicker: View {
                             .foregroundColor(choosenCategory == category ? .white : .accentColor)
                     }
                     .frame(height: 40)
-                    .background(choosenCategory == category ? Color.blue : Color.secondaryBackground)
+                    .background(choosenCategory == category ? Color.accentColor : Color.secondaryBackground)
+                    .cornerRadius(12)
                 }
             }
         }
@@ -36,6 +40,6 @@ struct CustomPicker: View {
 
 struct CustomPicker_Previews: PreviewProvider {
     static var previews: some View {
-        CustomPicker(action: {}, choosenCategory: .constant(.all))
+        CustomPicker(choosenCategory: .constant(.all))
     }
 }

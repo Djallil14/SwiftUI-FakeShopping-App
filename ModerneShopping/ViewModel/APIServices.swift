@@ -11,10 +11,18 @@ class APIServices {
     
     static let shared = APIServices()
     private let baseURL = "https://fakestoreapi.com/products"
+    private let cartURL = "https://fakestoreapi.com/carts/"
     private let apiCall = URLSession.shared
     
     func fetchProducts(from endpoint: ProductListEndpoint, completion: @escaping (Result<[Product], APICallError>) -> ()){
         guard let url = URL(string: "\(baseURL)\(endpoint.description)") else {
+            completion(.failure(.invalidEndpoint))
+            return
+        }
+        loadURLAndDecode(url: url, completion: completion)
+    }
+    func loadCart(cartID: Int,completion: @escaping (Result<Cart, APICallError>)-> ()){
+        guard let url = URL(string: "\(cartURL)\(cartID)") else {
             completion(.failure(.invalidEndpoint))
             return
         }
@@ -33,11 +41,11 @@ enum ProductListEndpoint: String, CaseIterable {
     
     var description: String {
         switch self {
-        case .all: return ""
+        case .all: return "/"
         case .jewelery: return "/category/jewelery"
         case .electronics: return "/category/electronics"
-        case .men: return "/category/men's clothing"
-        case .women: return "/category/women's clothing"
+        case .men: return "/category/men's%20clothing"
+        case .women: return "/category/women's%20clothing"
         }
     }
 }

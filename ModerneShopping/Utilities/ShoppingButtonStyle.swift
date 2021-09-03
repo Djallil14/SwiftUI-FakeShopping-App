@@ -25,7 +25,12 @@ struct AddCartButtonStyle: ButtonStyle {
             }
             HStack {
                 Spacer()
+                if configuration.isPressed {
+                    Text("Added to Cart").bold()
+                        .foregroundColor(.white)
+                } else {
                 configuration.label
+                }
                 Spacer()
             }
         }

@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject var products = ProductsListObject()
+    @StateObject var cartItems = CartViewModel()
     var body: some View {
         TabView{
-            HomeView()
+            HomeView(productsList: products, cart: cartItems)
                 .tabItem {
                     Image(systemName:"house")
                     Text("Home")
                 }
-            Text("Cart")
+            CartView(cartProducts: cartItems)
                 .tabItem {
                     Image(systemName: "cart")
                     Text("Cart")
