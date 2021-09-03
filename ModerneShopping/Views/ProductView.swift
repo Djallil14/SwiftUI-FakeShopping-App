@@ -10,31 +10,43 @@ import SwiftUI
 struct ProductView: View {
     let product: Product
     var body: some View {
-        VStack {
-            ProductImage(imageURL: product.imageURL)
-            Text(product.title)
-                .font(.headline)
-                .padding()
-            Text("\(product.price.format(f: ".02"))$")
-                .font(.headline)
-            HStack(spacing: 2) {
-                Text("\(product.formatedRating)")
-                Text("(\(product.rating.count))").font(.caption)
-                    .foregroundColor(.secondary)
-                    .offset(y: 3)
+        ZStack {
+            Color.secondaryBackground.edgesIgnoringSafeArea(.top)
+            VStack {
+                ProductImage(imageURL: product.imageURL)
+                ZStack {
+                    Color.background.edgesIgnoringSafeArea(.bottom)
+                        .cornerRadius(25)
+                        .shadow(color: .accentColor.opacity(0.2), radius: 3, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
+                    VStack(spacing: 0){
+                        Text(product.title)
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                            .padding(24)
+                        Text("\(product.price.format(f: ".02"))$")
+                            .font(.headline)
+                        HStack(spacing: 2) {
+                            Text("\(product.formatedRating)")
+                            Text("(\(product.rating.count))").font(.caption)
+                                .foregroundColor(.secondary)
+                                .offset(y: 3)
+                        }
+                        .padding(8)
+                        Text(product.description).italic()
+                            .foregroundColor(.secondary)
+                            .padding()
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                            HStack {
+                                Text("Add to cart").bold()
+                            }
+                        }.buttonStyle(AddCartButtonStyle())
+                        Spacer(minLength: 100)
+                    }
+                    .navigationBarTitleDisplayMode(.inline)
+                }.edgesIgnoringSafeArea(.bottom)
             }
-            .padding()
-            Text(product.description).italic()
-                .foregroundColor(.secondary)
-                .padding()
-                .multilineTextAlignment(.center)
-            
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
-                HStack {
-                    Text("Add to cart").bold()
-                }
-            }.buttonStyle(AddCartButtonStyle())
-            Spacer()
         }
     }
 }
@@ -45,7 +57,7 @@ struct ProductImage: View {
     var body: some View {
         ZStack{
             Rectangle()
-                .fill(Color.white)
+                .fill(Color.secondaryBackground)
                 .frame(width: 300, height: 340, alignment: .center)
                 .cornerRadius(12)
                 .overlay(
@@ -86,7 +98,6 @@ struct ProductImage: View {
                     }
                     Spacer()
                 }.offset(x: 10, y: -10)
-                    
             )
         }
     }

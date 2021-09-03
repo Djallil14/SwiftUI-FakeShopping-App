@@ -12,10 +12,10 @@ struct ProductListItem: View {
     var body: some View {
         VStack {
             SmallProductImage(imageURL: product.imageURL)
-                
             Text(product.title)
                 .bold()
                 .lineLimit(2)
+                .multilineTextAlignment(.center)
                 .padding(.horizontal)
             Text("\(product.price.format(f: ".2"))$").bold()
             HStack(spacing: 2) {
