@@ -13,7 +13,7 @@ struct MainView: View {
     @StateObject var user = UserViewModel()
     var body: some View {
         TabView{
-            HomeView(productsList: products, cart: cartItems, user: user)
+            HomeView(productsList: products, user: user).environmentObject(cartItems)
                 .tabItem {
                     Image(systemName:"house")
                     Text("Home")

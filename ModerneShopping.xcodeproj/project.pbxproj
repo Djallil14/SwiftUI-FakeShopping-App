@@ -43,6 +43,7 @@
 		9DACF9AA26E677CA00AD45B7 /* LoggedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9A926E677CA00AD45B7 /* LoggedInView.swift */; };
 		9DACF9AC26E6E88100AD45B7 /* api.json in Resources */ = {isa = PBXBuildFile; fileRef = 9DACF9AB26E6E88100AD45B7 /* api.json */; };
 		9DACF9AE26E6F09400AD45B7 /* ProfilButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9AD26E6F09400AD45B7 /* ProfilButtonMenu.swift */; };
+		9DACF9B026E7139400AD45B7 /* ProfilButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		9DACF9A926E677CA00AD45B7 /* LoggedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInView.swift; sourceTree = "<group>"; };
 		9DACF9AB26E6E88100AD45B7 /* api.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = api.json; sourceTree = "<group>"; };
 		9DACF9AD26E6F09400AD45B7 /* ProfilButtonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilButtonMenu.swift; sourceTree = "<group>"; };
+		9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				9DACF9A926E677CA00AD45B7 /* LoggedInView.swift */,
+				9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */,
 			);
 			path = ProfilViews;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				9DACF95A26E1C4D300AD45B7 /* CartView.swift in Sources */,
 				9DACF95026E1494B00AD45B7 /* ProductListItem.swift in Sources */,
 				9DACF9A326E6729800AD45B7 /* ProductLoading.swift in Sources */,
+				9DACF9B026E7139400AD45B7 /* ProfilButtons.swift in Sources */,
 				9DACF94E26E147C600AD45B7 /* ProductList.swift in Sources */,
 				9DACF93526E0297B00AD45B7 /* ProductView.swift in Sources */,
 				9DACF96226E1CA6500AD45B7 /* ProductListViewModel.swift in Sources */,
@@ -409,7 +413,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -464,7 +468,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

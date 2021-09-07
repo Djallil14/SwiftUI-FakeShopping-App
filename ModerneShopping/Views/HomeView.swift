@@ -9,9 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var productsList: ProductsListObject
-    @ObservedObject var cart: CartViewModel
+    @EnvironmentObject var cart: CartViewModel
     @ObservedObject var user: UserViewModel
-    let product: [Product] = Product.sampleProducts
     @State var pickedCategory: ProductListEndpoint = .all
     var body: some View {
         NavigationView{
@@ -19,7 +18,7 @@ struct HomeView: View {
                 Color.background.edgesIgnoringSafeArea(.all)
                 ScrollView(.vertical){
                     VStack(alignment: .center) {
-                        Text("Hello, \(user.user?.results[0].name.first ?? "") \(user.user?.results[0].name.last ?? "Welcome")🥳")
+                        Text("Hello, \(user.user?.results[0].name.first ?? "") \(user.user?.results[0].name.last ?? "Welcome") ! \n Enjoy your shopping 🥳")
                             .font(.title).bold()
                             .multilineTextAlignment(.center)
                             .blendMode(.overlay)
@@ -31,7 +30,8 @@ struct HomeView: View {
                                 }
                             })
                         if productsList.products != nil {
-                            ProductList(cart: cart, products: productsList.products!)
+                            ProductList(products: productsList.products!)
+                                .environmentObject(cart)
                         } else {
                             LoadingView(isLoading: productsList.isLoading, error: productsList.error){ productsList.loadProducts(with: pickedCategory)
                             }
@@ -47,39 +47,47 @@ struct HomeView: View {
             }.navigationBarTitleDisplayMode(.large)
             .navigationBarItems(
                 leading: NavigationLink(destination:ProfilView().environmentObject(user)){
-                    leadingBarItem(user: user.user?.results[0] ?? User.sampleProducts.results[0])
+                    if let user = user.user?.results[0]{
+                    leadingBarItem(user: user)
+                    }
                 },
                 trailing:
-                    trailingBarItem
+                    TrailingBarItem().environmentObject(cart)
             )
         }
     }
     
-    var trailingBarItem: some View {
+}
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView(productsList: ProductsListObject(), user: UserViewModel()).environmentObject(CartViewModel())
+    }
+}
+
+struct TrailingBarItem: View {
+    @EnvironmentObject var cart: CartViewModel
+    var body: some View {
         NavigationLink(destination: CartView(cartProducts: cart)){
             Image(systemName:"cart")
+                .foregroundColor(.darkText)
                 .imageScale(.large)
                 .overlay(
                     VStack {
                         if cart.cartProductDic.keys.count  > 0 {
                             ZStack {
-                                Circle().fill(Color.accentColor)
+                                Circle().fill(Color.tertiary)
                                 Text("\(cart.cartProductDic.keys.count)")
                                     .font(.caption)
-                                    .foregroundColor(.background)
+                                    .foregroundColor(.darkText)
                             }
                             Spacer()
                         }
                     }.offset(x: 10, y: -10)
+                    .shadow(color: .darkText.opacity(0.2), radius: 2, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
                     
                 )
         }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView(productsList: ProductsListObject(), cart: CartViewModel(), user: UserViewModel())
     }
 }
 
@@ -99,9 +107,12 @@ struct leadingBarItem: View {
                                 .clipped()
                                 .clipShape(Circle())
                         }
+                        else {
+                            LoadingView(isLoading: imageLoader.isLoading, error: nil, retryAction:{ imageLoader.loadImage(with: URL(string: user.picture.thumbnail)!)})
+                        }
                     }
                 )
-                .overlay(Circle().stroke(lineWidth: 2).foregroundColor(Color.accentColor))
+                .overlay(Circle().stroke(lineWidth: 2).foregroundColor(Color.darkText))
         }.onAppear{
             imageLoader.loadImage(with: URL(string: user.picture.thumbnail)!)
         }

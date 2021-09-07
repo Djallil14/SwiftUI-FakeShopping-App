@@ -19,21 +19,21 @@ struct AddCartButtonStyle: ButtonStyle {
                 Spacer()
                 if configuration.isPressed {
                     Text("Added to Cart").bold()
-                        .foregroundColor(.white)
+                        .foregroundColor(.tertiary)
                 } else {
                 configuration.label
                 }
                 Spacer()
             }
         }
-        .foregroundColor(.white)
+        .foregroundColor(.tertiary)
         .padding()
         .background(
             Group{
                 if configuration.isPressed {
                     Color.green
                 } else {
-                    Color.accentColor
+                    Color.darkText
                 }
             }
         )

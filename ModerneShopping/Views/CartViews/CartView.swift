@@ -16,6 +16,7 @@ struct CartView: View {
         UITableView.appearance().backgroundColor = UIColor(Color.background)
     }
     @ObservedObject var cartProducts: CartViewModel
+    @State var showDelete: Bool = false
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,7 +25,7 @@ struct CartView: View {
                     if cartProducts.cartProductDic.isEmpty {
                         CartLoadingView()
                     } else {
-                    CartListView(cart: cartProducts, products: cartProducts.cartProductDic)
+                        CartListView(cart: cartProducts, products: cartProducts.cartProductDic, showDelete: $showDelete)
                     }
                     Text("Total: \(cartProducts.totalPrice.format(f: ".2"))$")
                     Button(action: {}, label: {
@@ -43,11 +44,14 @@ struct CartView: View {
             }.navigationTitle("Cart")
             .navigationBarItems(trailing: trailingItem)
         }.onAppear{
+            showDelete = false
             cartProducts.calculateTotalPrice()
         }
     }
     var trailingItem: some View {
-        Image(systemName:"slider.horizontal.3")
+        Button(action:{withAnimation {showDelete.toggle()}}){
+            Image(systemName:"trash")
+        }
     }
 }
 

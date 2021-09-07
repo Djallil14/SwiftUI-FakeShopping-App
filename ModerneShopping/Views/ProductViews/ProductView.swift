@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ProductView: View {
-    @ObservedObject var cart: CartViewModel
+    @EnvironmentObject var cart: CartViewModel
     let product: Product
     var body: some View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.top)
             VStack {
-                ProductImage(cart: cart, imageURL: product.imageURL).padding(.top)
+                ProductImage(imageURL: product.imageURL).padding(.top)
+                    .environmentObject(cart)
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.bottom)
                         .cornerRadius(25)
@@ -50,11 +51,12 @@ struct ProductView: View {
                 }.edgesIgnoringSafeArea(.bottom)
             }
         }.navigationBarTitleDisplayMode(.large)
+        // ajouter un navigation view vers le cart
     }
 }
 
 struct ProductImage: View {
-    @ObservedObject var cart: CartViewModel
+    @EnvironmentObject var cart: CartViewModel
     @StateObject private var imageLoader = ImageLoader()
     let imageURL: URL
     var body: some View {
@@ -83,33 +85,15 @@ struct ProductImage: View {
                 )
         }
         .cornerRadius(12)
-        .navigationBarItems(trailing: trailingBarItem)
+        .navigationBarItems(trailing: TrailingBarItem().environmentObject(cart))
         .onAppear {
             imageLoader.loadImage(with: imageURL)
-        }
-    }
-    var trailingBarItem: some View {
-        NavigationLink(destination: CartView(cartProducts: cart)){
-        Image(systemName:"cart")
-            .imageScale(.large)
-            .overlay(
-                VStack {
-                    if cart.cartProductDic.keys.count > 0 {
-                        ZStack {
-                            Circle().fill(Color.accentColor)
-                            Text("\(cart.cartProductDic.keys.count)")
-                                .font(.caption)
-                                .foregroundColor(.background)
-                        }
-                        Spacer()
-                    }
-                }.offset(x: 10, y: -10)
-            )
         }
     }
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductView(cart: CartViewModel(), product: Product.sampleProducts[6])
+        ProductView(product: Product.sampleProducts[6])
+            .environmentObject(CartViewModel())
     }
 }

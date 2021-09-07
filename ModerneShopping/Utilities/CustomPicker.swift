@@ -23,7 +23,7 @@ struct CustomPicker: View {
                             .font(.caption2)
                             .padding(8)
                             .multilineTextAlignment(.center)
-                            .foregroundColor(choosenCategory == category ? .tertiary : .allBlack)
+                            .foregroundColor(choosenCategory == category ? .white : .accentColor)
                     }
                     .frame(height: 40)
                     .background(choosenCategory == category ? Color.accentColor : Color.secondaryBackground)

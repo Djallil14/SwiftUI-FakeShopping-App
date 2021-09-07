@@ -11,5 +11,5 @@ extension Color {
     static let background: Color = Color("Background")
     static let secondaryBackground: Color = Color("SecondaryBackground")
     static let tertiary: Color = Color("tertiary")
-    static let allBlack: Color = Color("allBlack")
+    static let darkText: Color = Color("darkText")
 }

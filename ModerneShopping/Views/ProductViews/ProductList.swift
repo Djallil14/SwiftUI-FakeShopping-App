@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ProductList: View {
-    @ObservedObject var cart: CartViewModel
+    @EnvironmentObject var cart: CartViewModel
     let products: [Product]
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
     var body: some View {
         LazyVGrid(columns: columns){
             ForEach(products){product in
-                NavigationLink(destination:ProductView(cart: cart, product: product)){
+                NavigationLink(destination:ProductView(product: product).environmentObject(cart)){
                     ProductListItem(product: product)
                 }.accentColor(.primary)
             }
@@ -25,7 +25,7 @@ struct ProductList: View {
 struct ProductList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView  {
-            ProductList(cart: CartViewModel(), products: Product.sampleProducts)
+            ProductList(products: Product.sampleProducts).environmentObject(CartViewModel())
         }
     }
 }

@@ -12,47 +12,27 @@ struct LoggedInView: View {
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
     let user: User
     var body: some View {
-        ZStack {
-            Color.background.edgesIgnoringSafeArea(.all)
-            VStack(alignment: .center) {
-                HeaderLoggedInView(user: user)
-                    .padding(.bottom)
-                Divider()
-                VStack {
-                    Button(action: {}){
-                        HStack {
-                            Text("Change Informations")
-                            Image(systemName: "slider.horizontal.3")
-                        }
-                    }.buttonStyle(ProfilButtonMenu())
-                    Button(action: {}){
-                        HStack {
-                            Text("History")
-                            Image(systemName: "bag.circle")
-                        }
-                    }.buttonStyle(ProfilButtonMenu())
-                    Button(action: {}){
-                        HStack {
-                            Text("Orders")
-                            Image(systemName: "bag")
-                        }
-                    }.buttonStyle(ProfilButtonMenu())
-                    Button(action: {}){
-                        HStack {
-                            Text("Settings")
-                            Image(systemName: "gear")
-                        }
-                    }.buttonStyle(ProfilButtonMenu())
-                }.padding()
-                Spacer()
-                MapView(region: $region, user: user)
-                Spacer()
+        NavigationView{
+            ZStack {
+                Color.background.edgesIgnoringSafeArea(.all)
+                VStack(alignment: .center) {
+                    HeaderLoggedInView(user: user)
+                        .padding(.bottom)
+                    Divider()
+                    ProfilButtons()
+                    Spacer()
+                    MapView(region: $region, user: user)
+                        .shadow(color: .darkText.opacity(0.2), radius: 4, x: 1, y: 2)
+                    Spacer()
+                }
+                .navigationBarBackButtonHidden(false)
+                .navigationBarTitleDisplayMode(.inline)
+                .onAppear{
+                    print("Lattitude : \(user.location.coordinates.latitude)")
+                    print("Longitude : \(user.location.coordinates.longitude)")
+                    region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:Double( user.location.coordinates.latitude) ?? 0, longitude: Double( user.location.coordinates.longitude) ?? 0), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
+                }
             }.navigationBarHidden(true)
-            .onAppear{
-                print(user.location.coordinates.latitude)
-                print(user.location.coordinates.longitude)
-                region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:Double( user.location.coordinates.latitude) ?? 0, longitude: Double( user.location.coordinates.longitude) ?? 0), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
-        }
         }
     }
 }
@@ -80,9 +60,14 @@ struct HeaderLoggedInView: View {
                 }
             }
             .padding()
-            Text("\(user.name.first) \(user.name.last)")
-                .font(.title2)
-                .bold()
+            VStack(alignment: .leading) {
+                Text("\(user.name.first) \(user.name.last)")
+                    .font(.title2)
+                    .bold()
+                Text("\(user.email)")
+                    .foregroundColor(.secondary)
+                Text("\(user.location.city)")
+            }
             Spacer()
         }.padding()
         .onAppear{
@@ -94,17 +79,21 @@ struct HeaderLoggedInView: View {
 struct MapView: View {
     @Binding var region: MKCoordinateRegion
     let user: User
-    @State var annotation: [UserLocation] = [UserLocation(name: "Default", coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0))]
+    @State var annotation: [UserLocation] = [UserLocation(name: "Default", coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0)), UserLocation(name: "Apple", coordinate: CLLocationCoordinate2D(latitude: 37.334722, longitude: -122.008889))]
     var body: some View {
         Map(coordinateRegion: $region, annotationItems: annotation){
-            MapPin(coordinate: $0.coordinate)
+            MapAnnotation(coordinate: $0.coordinate, anchorPoint: CGPoint(x: 0.5, y: 0.5)){
+                Image(systemName: "person.circle.fill")
+                    .foregroundColor(.red)
+                    .imageScale(.large)
+            }
         }
-            .frame(height: 200)
+        .frame(height: 200)
         .cornerRadius(12)
         .padding(.horizontal)
-            .onAppear{
-                annotation = [UserLocation(name: user.name.first, coordinate: CLLocationCoordinate2D(latitude: Double(user.location.coordinates.latitude) ?? 0, longitude: Double(user.location.coordinates.longitude) ?? 0))]
-            }
+        .onAppear{
+            annotation = [UserLocation(name: user.name.first, coordinate: CLLocationCoordinate2D(latitude: Double(user.location.coordinates.latitude) ?? 0, longitude: Double(user.location.coordinates.longitude) ?? 0))]
+        }
     }
 }
 
@@ -113,3 +102,5 @@ struct UserLocation: Identifiable {
     let name: String
     let coordinate: CLLocationCoordinate2D
 }
+
+

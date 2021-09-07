@@ -15,14 +15,20 @@ class  CartViewModel: ObservableObject {
     func addToCart(addedProduct: Product){
         let products = cartProductDic.map({$0.key})
         if products.isEmpty {
+            withAnimation{
             cartProductDic[addedProduct] = 1
+            }
             return
         }
         for product in products {
             if addedProduct.id == product.id {
+                withAnimation{
                 cartProductDic[product]! += 1
+                }
             } else {
+                withAnimation{
                 cartProductDic[addedProduct] = 1
+                }
             }
         }
     }
@@ -34,8 +40,11 @@ class  CartViewModel: ObservableObject {
         for (product,quantity) in cartProductDic {
             totalprice += product.price * Double(quantity)
         }
+        withAnimation{
         totalPrice = totalprice
+        }
     }
-    func removeFromCart(product: Product){
+    func removeFromCart(toRemove: Product){
+        cartProductDic.removeValue(forKey: toRemove)
     }
 }
