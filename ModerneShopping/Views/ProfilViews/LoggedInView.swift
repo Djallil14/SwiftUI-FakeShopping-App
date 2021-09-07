@@ -65,6 +65,7 @@ struct HeaderLoggedInView: View {
                     .font(.title2)
                     .bold()
                 Text("\(user.email)")
+                    .font(.caption)
                     .foregroundColor(.secondary)
                 Text("\(user.location.city)")
             }

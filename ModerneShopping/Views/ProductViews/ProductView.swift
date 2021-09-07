@@ -92,6 +92,7 @@ struct ProductImage: View {
     }
 }
 struct ContentView_Previews: PreviewProvider {
+    @Namespace static var namespace
     static var previews: some View {
         ProductView(product: Product.sampleProducts[6])
             .environmentObject(CartViewModel())

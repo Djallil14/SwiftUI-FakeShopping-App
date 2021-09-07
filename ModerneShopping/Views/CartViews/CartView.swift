@@ -18,7 +18,7 @@ struct CartView: View {
     @ObservedObject var cartProducts: CartViewModel
     @State var showDelete: Bool = false
     var body: some View {
-        NavigationView {
+            let productsDic = cartProducts.cartProductDic.map({$0.key})
             ZStack {
                 Color.background.edgesIgnoringSafeArea(.all)
                 VStack{
@@ -28,7 +28,7 @@ struct CartView: View {
                         CartListView(cart: cartProducts, products: cartProducts.cartProductDic, showDelete: $showDelete)
                     }
                     Text("Total: \(cartProducts.totalPrice.format(f: ".2"))$")
-                    Button(action: {}, label: {
+                    Button(action: {withAnimation{cartProducts.showShowcaseSheet.toggle()}}, label: {
                         HStack {
                             Text("Check out").bold()
                             Image(systemName: "creditcard")
@@ -41,9 +41,19 @@ struct CartView: View {
                 }.onChange(of: cartProducts.cartProductDic, perform: { value in
                     cartProducts.calculateTotalPrice()
                 })
-            }.navigationTitle("Cart")
+            }
+            .overlay(
+                Group {
+                    if cartProducts.showShowcaseSheet{
+                        CheckOutView(products: productsDic, price: cartProducts.totalPrice).environmentObject(cartProducts)
+                    } else {
+                        EmptyView()
+                    }
+                }
+            )
+            .navigationTitle("Cart")
             .navigationBarItems(trailing: trailingItem)
-        }.onAppear{
+            .onAppear{
             showDelete = false
             cartProducts.calculateTotalPrice()
         }

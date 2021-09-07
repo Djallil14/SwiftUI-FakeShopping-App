@@ -34,7 +34,7 @@ struct CustomPicker: View {
         .frame(height: 40)
         .background(Color.secondaryBackground)
         .cornerRadius(25)
-        .shadow(color: .accentColor.opacity(0.2), radius: 2, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
+        .shadow(color: .darkText.opacity(0.2), radius:2, x: 0.0, y: 0.0)
     }
 }
 

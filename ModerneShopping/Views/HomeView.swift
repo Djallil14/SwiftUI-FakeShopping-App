@@ -76,7 +76,7 @@ struct TrailingBarItem: View {
                     VStack {
                         if cart.cartProductDic.keys.count  > 0 {
                             ZStack {
-                                Circle().fill(Color.tertiary)
+                                Circle().fill(Color.secondaryBackground)
                                 Text("\(cart.cartProductDic.keys.count)")
                                     .font(.caption)
                                     .foregroundColor(.darkText)
@@ -85,7 +85,6 @@ struct TrailingBarItem: View {
                         }
                     }.offset(x: 10, y: -10)
                     .shadow(color: .darkText.opacity(0.2), radius: 2, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
-                    
                 )
         }
     }

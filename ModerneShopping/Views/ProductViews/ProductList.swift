@@ -15,7 +15,20 @@ struct ProductList: View {
         LazyVGrid(columns: columns){
             ForEach(products){product in
                 NavigationLink(destination:ProductView(product: product).environmentObject(cart)){
-                    ProductListItem(product: product)
+                    VStack {
+                        ProductListItem(product: product)
+                        Button(action: {cart.addToCart(addedProduct: product)}, label: {
+                            HStack {
+                                Image(systemName: "cart.badge.plus")
+                                Text("Add to cart")
+                                    .font(.caption)
+                                    .bold()
+                            }.padding(8)
+                            .background(Color.secondaryBackground)
+                            .cornerRadius(18)
+                        })
+                    }
+                    
                 }.accentColor(.primary)
             }
         }

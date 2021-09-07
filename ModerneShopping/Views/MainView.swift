@@ -33,6 +33,7 @@ struct MainView: View {
         }.onAppear{
             user.loadUser()
         }
+        .zIndex(10)
     }
 }
 

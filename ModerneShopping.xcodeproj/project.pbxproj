@@ -44,6 +44,7 @@
 		9DACF9AC26E6E88100AD45B7 /* api.json in Resources */ = {isa = PBXBuildFile; fileRef = 9DACF9AB26E6E88100AD45B7 /* api.json */; };
 		9DACF9AE26E6F09400AD45B7 /* ProfilButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9AD26E6F09400AD45B7 /* ProfilButtonMenu.swift */; };
 		9DACF9B026E7139400AD45B7 /* ProfilButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */; };
+		9DACF9B226E7E96600AD45B7 /* CheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B126E7E96600AD45B7 /* CheckOutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		9DACF9AB26E6E88100AD45B7 /* api.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = api.json; sourceTree = "<group>"; };
 		9DACF9AD26E6F09400AD45B7 /* ProfilButtonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilButtonMenu.swift; sourceTree = "<group>"; };
 		9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilButtons.swift; sourceTree = "<group>"; };
+		9DACF9B126E7E96600AD45B7 /* CheckOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 				9DACF95D26E1C55400AD45B7 /* CartListView.swift */,
 				9DACF95B26E1C54700AD45B7 /* CartListItem.swift */,
 				9DACF99F26E6715600AD45B7 /* CartLoadingView.swift */,
+				9DACF9B126E7E96600AD45B7 /* CheckOutView.swift */,
 				9DACF99726E670AE00AD45B7 /* LottieFiles */,
 			);
 			path = CartViews;
@@ -342,6 +345,7 @@
 				9DACF94526E02B2700AD45B7 /* Bundle+LoadAndDecode.swift in Sources */,
 				9DACF9AA26E677CA00AD45B7 /* LoggedInView.swift in Sources */,
 				9DACF94926E02E4400AD45B7 /* ImageLoader.swift in Sources */,
+				9DACF9B226E7E96600AD45B7 /* CheckOutView.swift in Sources */,
 				9DACF95A26E1C4D300AD45B7 /* CartView.swift in Sources */,
 				9DACF95026E1494B00AD45B7 /* ProductListItem.swift in Sources */,
 				9DACF9A326E6729800AD45B7 /* ProductLoading.swift in Sources */,

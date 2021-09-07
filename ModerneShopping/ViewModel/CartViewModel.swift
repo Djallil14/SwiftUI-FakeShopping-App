@@ -11,6 +11,7 @@ class  CartViewModel: ObservableObject {
     @Published var cartProduct: [Product] = []
     @Published var cartProductDic: [Product: Int] = [:]
     @Published var totalPrice: Double = 0
+    @Published var showShowcaseSheet: Bool = false
     
     func addToCart(addedProduct: Product){
         let products = cartProductDic.map({$0.key})
@@ -26,8 +27,10 @@ class  CartViewModel: ObservableObject {
                 cartProductDic[product]! += 1
                 }
             } else {
-                withAnimation{
-                cartProductDic[addedProduct] = 1
+                if !products.contains(where: {$0.id == addedProduct.id}){
+                    withAnimation{
+                    cartProductDic[addedProduct] = 1
+                    }
                 }
             }
         }
