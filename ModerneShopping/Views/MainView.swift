@@ -10,18 +10,28 @@ import SwiftUI
 struct MainView: View {
     @StateObject var products = ProductsListObject()
     @StateObject var cartItems = CartViewModel()
+    @StateObject var user = UserViewModel()
     var body: some View {
         TabView{
-            HomeView(productsList: products, cart: cartItems)
+            HomeView(productsList: products, cart: cartItems, user: user)
                 .tabItem {
                     Image(systemName:"house")
                     Text("Home")
                 }
             CartView(cartProducts: cartItems)
+                .environmentObject(user)
                 .tabItem {
                     Image(systemName: "cart")
                     Text("Cart")
                 }
+            ProfilView()
+                .environmentObject(user)
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("Profil")
+                }
+        }.onAppear{
+            user.loadUser()
         }
     }
 }

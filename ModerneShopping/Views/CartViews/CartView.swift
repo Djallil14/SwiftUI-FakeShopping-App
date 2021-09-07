@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CartView: View {
+    @EnvironmentObject var user: UserViewModel
     init(cartProducts: CartViewModel){
         self.cartProducts = cartProducts
         UITableView.appearance().separatorStyle = .none
@@ -20,15 +21,30 @@ struct CartView: View {
             ZStack {
                 Color.background.edgesIgnoringSafeArea(.all)
                 VStack{
-                    CartListView(products: cartProducts.cartProduct)
-                }
+                    if cartProducts.cartProductDic.isEmpty {
+                        CartLoadingView()
+                    } else {
+                    CartListView(cart: cartProducts, products: cartProducts.cartProductDic)
+                    }
+                    Text("Total: \(cartProducts.totalPrice.format(f: ".2"))$")
+                    Button(action: {}, label: {
+                        HStack {
+                            Text("Check out").bold()
+                            Image(systemName: "creditcard")
+                        }.padding()
+                        .foregroundColor(.tertiary)
+                    })
+                    .background(Color.accentColor)
+                    .cornerRadius(12)
+                    .padding()
+                }.onChange(of: cartProducts.cartProductDic, perform: { value in
+                    cartProducts.calculateTotalPrice()
+                })
             }.navigationTitle("Cart")
-            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: trailingItem)
+        }.onAppear{
+            cartProducts.calculateTotalPrice()
         }
-    }
-    func filterCartProduct(productID: Int, productsIDs: [Int])-> Bool{
-        productsIDs.contains(productID)
     }
     var trailingItem: some View {
         Image(systemName:"slider.horizontal.3")

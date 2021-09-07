@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product: Identifiable, Codable {
+struct Product: Identifiable, Codable, Hashable {
     var id: Int
     var title: String
     var price: Double
@@ -23,20 +23,23 @@ extension Product {
     var formatedRating: String {
         var result = ""
         for _ in 0...Int(rating.rate){
-            result.append("⭐️")
+            result.append("★")
+        }
+        while result.count<5{
+            result += "☆"
         }
         return result
     }
 }
 
-struct Rating: Codable {
+struct Rating: Codable, Hashable {
     let rate: Double
-    let count: Int?
+    let manualCount: Int = Int.random(in: 0...500)
 }
 
 extension Product {
     static var sampleProducts: [Product] {
         let response: [Product]? = try? Bundle.main.loadAndDecodeJSON(filename: "products")
-        return response ?? [Product(id: 1, title: "noproduct", price: 10.5, description: "noproduct", category: "noproduct", image: "noproduct", rating: Rating(rate: 10.0, count: 5))]
+        return response ?? [Product(id: 1, title: "noproduct", price: 10.5, description: "noproduct", category: "noproduct", image: "noproduct", rating: Rating(rate: 10.0))]
     }
 }

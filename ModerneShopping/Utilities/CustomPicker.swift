@@ -20,20 +20,20 @@ struct CustomPicker: View {
                     }){
                         Text(category.rawValue)
                             .bold()
-                            .font(.caption)
+                            .font(.caption2)
                             .padding(8)
                             .multilineTextAlignment(.center)
-                            .foregroundColor(choosenCategory == category ? .white : .accentColor)
+                            .foregroundColor(choosenCategory == category ? .tertiary : .allBlack)
                     }
                     .frame(height: 40)
                     .background(choosenCategory == category ? Color.accentColor : Color.secondaryBackground)
-                    .cornerRadius(12)
+                    .cornerRadius(25)
                 }
             }
         }
         .frame(height: 40)
         .background(Color.secondaryBackground)
-        .cornerRadius(12)
+        .cornerRadius(25)
         .shadow(color: .accentColor.opacity(0.2), radius: 2, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
     }
 }

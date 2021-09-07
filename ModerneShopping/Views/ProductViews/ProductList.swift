@@ -18,7 +18,7 @@ struct ProductList: View {
                     ProductListItem(product: product)
                 }.accentColor(.primary)
             }
-        }.navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 

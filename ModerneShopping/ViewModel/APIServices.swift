@@ -11,7 +11,7 @@ class APIServices {
     
     static let shared = APIServices()
     private let baseURL = "https://fakestoreapi.com/products"
-    private let cartURL = "https://fakestoreapi.com/carts/"
+    private let userURL = "https://randomuser.me/api/"
     private let apiCall = URLSession.shared
     
     func fetchProducts(from endpoint: ProductListEndpoint, completion: @escaping (Result<[Product], APICallError>) -> ()){
@@ -21,8 +21,8 @@ class APIServices {
         }
         loadURLAndDecode(url: url, completion: completion)
     }
-    func loadCart(cartID: Int,completion: @escaping (Result<Cart, APICallError>)-> ()){
-        guard let url = URL(string: "\(cartURL)\(cartID)") else {
+    func fetchUser(completion: @escaping (Result<Results, APICallError>) -> ()){
+        guard let url = URL(string: "\(userURL)") else {
             completion(.failure(.invalidEndpoint))
             return
         }

@@ -12,15 +12,7 @@ struct AddCartButtonStyle: ButtonStyle {
         VStack(alignment: .leading) {
             HStack {
                 Spacer()
-                Image(systemName: "cart")
-                    .offset(x: configuration.isPressed ? 60 : -40)
-                    .opacity(configuration.isPressed ? 0 : 1)
-                    .overlay(
-                        Image(systemName: "cart.badge.plus")
-                            .offset(x: 40)
-                            .opacity(configuration.isPressed ? 1 : 0)
-                            .foregroundColor(.white)
-                    )
+                Image(systemName: configuration.isPressed ? "cart.badge.plus" : "cart")
                 Spacer()
             }
             HStack {

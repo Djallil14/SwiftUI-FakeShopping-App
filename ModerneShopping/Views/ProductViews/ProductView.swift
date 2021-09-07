@@ -12,9 +12,9 @@ struct ProductView: View {
     let product: Product
     var body: some View {
         ZStack {
-            Color.secondaryBackground.edgesIgnoringSafeArea(.top)
+            Color.white.edgesIgnoringSafeArea(.top)
             VStack {
-                ProductImage(cart: cart, imageURL: product.imageURL)
+                ProductImage(cart: cart, imageURL: product.imageURL).padding(.top)
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.bottom)
                         .cornerRadius(25)
@@ -27,8 +27,8 @@ struct ProductView: View {
                         Text("\(product.price.format(f: ".02"))$")
                             .font(.headline)
                         HStack(spacing: 2) {
-                            Text("\(product.formatedRating)")
-                            Text("(\(product.rating.count ?? 0))").font(.caption)
+                            Text("\(product.formatedRating)").font(.title3)
+                            Text("(\(product.rating.manualCount))").font(.caption)
                                 .foregroundColor(.secondary)
                                 .offset(y: 3)
                         }
@@ -39,7 +39,7 @@ struct ProductView: View {
                             .multilineTextAlignment(.center)
                         Spacer()
                         Button(action: {
-                            cart.addToCart(product: product)
+                            cart.addToCart(addedProduct: product)
                         }){
                             HStack {
                                 Text("Add to cart").bold()
@@ -47,10 +47,9 @@ struct ProductView: View {
                         }.buttonStyle(AddCartButtonStyle())
                         Spacer(minLength: 100)
                     }
-                    .navigationBarTitleDisplayMode(.inline)
                 }.edgesIgnoringSafeArea(.bottom)
             }
-        }
+        }.navigationBarTitleDisplayMode(.large)
     }
 }
 
@@ -61,7 +60,7 @@ struct ProductImage: View {
     var body: some View {
         ZStack{
             Rectangle()
-                .fill(Color.secondaryBackground)
+                .fill(Color.white)
                 .frame(width: 300, height: 340, alignment: .center)
                 .cornerRadius(12)
                 .overlay(
@@ -76,6 +75,7 @@ struct ProductImage: View {
                                     .clipped(antialiased: true)
                                     .aspectRatio(contentMode: .fit)
                                     .cornerRadius(12)
+                                    .padding()
                                 Spacer()
                             }
                         }
@@ -94,12 +94,12 @@ struct ProductImage: View {
             .imageScale(.large)
             .overlay(
                 VStack {
-                    if cart.cartProduct.count > 0 {
+                    if cart.cartProductDic.keys.count > 0 {
                         ZStack {
-                            Circle().fill(Color.red)
-                            Text("\(cart.cartProduct.count)")
+                            Circle().fill(Color.accentColor)
+                            Text("\(cart.cartProductDic.keys.count)")
                                 .font(.caption)
-                                .accentColor(.white)
+                                .foregroundColor(.background)
                         }
                         Spacer()
                     }

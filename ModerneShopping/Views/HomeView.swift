@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject var productsList: ProductsListObject
     @ObservedObject var cart: CartViewModel
+    @ObservedObject var user: UserViewModel
     let product: [Product] = Product.sampleProducts
     @State var pickedCategory: ProductListEndpoint = .all
     var body: some View {
@@ -18,15 +19,16 @@ struct HomeView: View {
                 Color.background.edgesIgnoringSafeArea(.all)
                 ScrollView(.vertical){
                     VStack(alignment: .center) {
-                        Text("Welcome to Modern Shopping.")
+                        Text("Hello, \(user.user?.results[0].name.first ?? "") \(user.user?.results[0].name.last ?? "Welcome")🥳")
                             .font(.title).bold()
                             .multilineTextAlignment(.center)
                             .blendMode(.overlay)
                             .padding()
                         CustomPicker(choosenCategory: $pickedCategory)
                             .onChange(of: pickedCategory, perform: { value in
+                                DispatchQueue.main.async {
                                     productsList.loadProducts(with: pickedCategory)
-                                    print(pickedCategory)
+                                }
                             })
                         if productsList.products != nil {
                             ProductList(cart: cart, products: productsList.products!)
@@ -35,34 +37,36 @@ struct HomeView: View {
                             }
                         }
                     }
+                    .onAppear{
+                        DispatchQueue.main.async {
+                            productsList.loadProducts(with: pickedCategory)
+                        }
+                    }
                     Spacer(minLength: 40)
                 }
-            }.navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("ModernShopping")
-            .navigationBarItems(leading: leadingBarItem, trailing: trailingBarItem)
-        }.onAppear{
-            productsList.loadProducts(with: .all)
+            }.navigationBarTitleDisplayMode(.large)
+            .navigationBarItems(
+                leading: NavigationLink(destination:ProfilView().environmentObject(user)){
+                    leadingBarItem(user: user.user?.results[0] ?? User.sampleProducts.results[0])
+                },
+                trailing:
+                    trailingBarItem
+            )
         }
     }
     
-    var leadingBarItem: some View {
-        Button(action:{}){
-            Image(systemName:"slider.horizontal.3")
-                .imageScale(.large)
-        }
-    }
     var trailingBarItem: some View {
         NavigationLink(destination: CartView(cartProducts: cart)){
             Image(systemName:"cart")
                 .imageScale(.large)
                 .overlay(
                     VStack {
-                        if cart.cartProduct.count > 0 {
+                        if cart.cartProductDic.keys.count  > 0 {
                             ZStack {
-                                Circle().fill(Color.red)
-                                Text("\(cart.cartProduct.count)")
+                                Circle().fill(Color.accentColor)
+                                Text("\(cart.cartProductDic.keys.count)")
                                     .font(.caption)
-                                    .accentColor(.white)
+                                    .foregroundColor(.background)
                             }
                             Spacer()
                         }
@@ -75,7 +79,32 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(productsList: ProductsListObject(), cart: CartViewModel())
+        HomeView(productsList: ProductsListObject(), cart: CartViewModel(), user: UserViewModel())
     }
 }
 
+struct leadingBarItem: View {
+    @StateObject var imageLoader = ImageLoader()
+    let user: User
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(Color.secondaryBackground)
+                .frame(width: 40, height: 40)
+                .overlay(
+                    Group{
+                        if let image = imageLoader.image{
+                            Image(uiImage: image)
+                                .resizable()
+                                .clipped()
+                                .clipShape(Circle())
+                        }
+                    }
+                )
+                .overlay(Circle().stroke(lineWidth: 2).foregroundColor(Color.accentColor))
+        }.onAppear{
+            imageLoader.loadImage(with: URL(string: user.picture.thumbnail)!)
+        }
+    }
+    
+}

@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct CartListView: View {
-    let products: [Product]
+    @ObservedObject var cart: CartViewModel
+    let products: [Product: Int]
     var body: some View {
+        let productsDic = products.map({$0.key})
         List {
-            ForEach(products){product in
-                CartListItem(product: product)
+            ForEach(productsDic, id: \.self){key in
+                CartListItem(cart: cart,product: key, quantity: products[key] ?? 0)
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
         }
@@ -21,6 +23,6 @@ struct CartListView: View {
 
 struct CartList_Previews: PreviewProvider {
     static var previews: some View {
-        CartListView(products: Product.sampleProducts)
+        CartListView(cart: CartViewModel(), products: [Product.sampleProducts[0]: 1])
     }
 }

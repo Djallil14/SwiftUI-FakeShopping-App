@@ -14,13 +14,18 @@ struct LoadingView: View {
     var body: some View {
         Group {
             if isLoading{
-                HStack{
+                VStack {
                     Spacer()
-                ProgressView()
+                    HStack{
+                        Spacer()
+                        ProductLoading()
+                            .frame(width: 80, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        Spacer()
+                    }
                     Spacer()
                 }
             } else if error != nil {
-                Text("shit")
+                Text("Can't load the products")
                 if retryAction != nil {
                     Button(action: retryAction!){
                         Text("retry")
