@@ -30,7 +30,7 @@ struct HomeView: View {
                                 }
                             })
                         if productsList.products != nil {
-                            ProductCarousel(products: productsList.products!)
+                            ProductCarousel(products: productsList.products!.shuffled())
                                 .environmentObject(cart)
                                 .padding(.top)
                         } else {

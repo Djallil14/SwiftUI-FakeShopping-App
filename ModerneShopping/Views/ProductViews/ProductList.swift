@@ -33,7 +33,10 @@ struct ProductList: View {
                             .background(Color.secondaryBackground)
                             .cornerRadius(18)
                         })
-                }
+                    }
+                    .background(Color.background
+                                    .cornerRadius(16)
+                                    .shadow(color: .darkText.opacity(0.05), radius: 2, x: 0.0, y: 0.0))
             }
         }.sheet(item: $product){product in
             ProductView(product: product).environmentObject(cart)

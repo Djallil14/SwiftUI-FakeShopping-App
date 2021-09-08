@@ -26,7 +26,7 @@ struct ProductListItem: View {
                     .foregroundColor(.secondary)
                     .offset(y: 3)
             }
-        }.padding()
+        }.padding(8)
     }
 }
 
