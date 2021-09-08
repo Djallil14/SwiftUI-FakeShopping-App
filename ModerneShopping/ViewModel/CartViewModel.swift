@@ -13,11 +13,11 @@ class  CartViewModel: ObservableObject {
     @Published var totalPrice: Double = 0
     @Published var showShowcaseSheet: Bool = false
     
-    func addToCart(addedProduct: Product){
+    func addToCart(addedProduct: Product, quantity: Int){
         let products = cartProductDic.map({$0.key})
         if products.isEmpty {
             withAnimation{
-            cartProductDic[addedProduct] = 1
+            cartProductDic[addedProduct] = quantity
             }
             return
         }
@@ -29,7 +29,7 @@ class  CartViewModel: ObservableObject {
             } else {
                 if !products.contains(where: {$0.id == addedProduct.id}){
                     withAnimation{
-                    cartProductDic[addedProduct] = 1
+                    cartProductDic[addedProduct] = quantity
                     }
                 }
             }

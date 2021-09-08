@@ -9,11 +9,23 @@ import SwiftUI
 
 struct ProductView: View {
     @EnvironmentObject var cart: CartViewModel
+    @Environment(\.presentationMode) var presentation
+    @State private var quantity: Int = 1
     let product: Product
     var body: some View {
         ZStack {
-            Color.white.edgesIgnoringSafeArea(.top)
+            Color.white.edgesIgnoringSafeArea(.bottom)
             VStack {
+                Spacer()
+                HStack{
+                    Button(action:{presentation.wrappedValue.dismiss()}){
+                        Image(systemName: "xmark")
+                            .padding(8)
+                            .background(Color.secondaryBackground)
+                            .clipShape(Circle())
+                    }
+                    Spacer()
+                }.padding()
                 ProductImage(imageURL: product.imageURL).padding(.top)
                     .environmentObject(cart)
                 ZStack {
@@ -39,16 +51,26 @@ struct ProductView: View {
                             .padding()
                             .multilineTextAlignment(.center)
                         Spacer()
+                        VStack(spacing: 0) {
+                            Text("Quantity").font(.headline)
+                            Picker(selection: $quantity, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/, content: {
+                                ForEach(1...10, id:\.self){quantity in
+                                    Text("\(quantity)").tag(quantity)
+                                }
+                                
+                            }).pickerStyle(SegmentedPickerStyle())
+                            .padding()
+                        }
                         Button(action: {
-                            cart.addToCart(addedProduct: product)
+                            cart.addToCart(addedProduct: product, quantity: quantity)
                         }){
                             HStack {
                                 Text("Add to cart").bold()
                             }
                         }.buttonStyle(AddCartButtonStyle())
-                        Spacer(minLength: 100)
                     }
                 }.edgesIgnoringSafeArea(.bottom)
+                Spacer()
             }
         }.navigationBarTitleDisplayMode(.large)
         // ajouter un navigation view vers le cart
@@ -63,7 +85,7 @@ struct ProductImage: View {
         ZStack{
             Rectangle()
                 .fill(Color.white)
-                .frame(width: 300, height: 340, alignment: .center)
+                .frame(width: 260, height: 300, alignment: .center)
                 .cornerRadius(12)
                 .overlay(
                     ZStack {
@@ -85,7 +107,6 @@ struct ProductImage: View {
                 )
         }
         .cornerRadius(12)
-        .navigationBarItems(trailing: TrailingBarItem().environmentObject(cart))
         .onAppear {
             imageLoader.loadImage(with: imageURL)
         }
