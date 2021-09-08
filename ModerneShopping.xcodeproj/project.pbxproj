@@ -45,6 +45,8 @@
 		9DACF9AE26E6F09400AD45B7 /* ProfilButtonMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9AD26E6F09400AD45B7 /* ProfilButtonMenu.swift */; };
 		9DACF9B026E7139400AD45B7 /* ProfilButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */; };
 		9DACF9B226E7E96600AD45B7 /* CheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B126E7E96600AD45B7 /* CheckOutView.swift */; };
+		9DACF9B426E940E600AD45B7 /* ProductCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B326E940E600AD45B7 /* ProductCarousel.swift */; };
+		9DACF9B626E9410F00AD45B7 /* ProductCarouselCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B526E9410F00AD45B7 /* ProductCarouselCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +89,8 @@
 		9DACF9AD26E6F09400AD45B7 /* ProfilButtonMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilButtonMenu.swift; sourceTree = "<group>"; };
 		9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilButtons.swift; sourceTree = "<group>"; };
 		9DACF9B126E7E96600AD45B7 /* CheckOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutView.swift; sourceTree = "<group>"; };
+		9DACF9B326E940E600AD45B7 /* ProductCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCarousel.swift; sourceTree = "<group>"; };
+		9DACF9B526E9410F00AD45B7 /* ProductCarouselCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCarouselCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +221,8 @@
 				9DACF94D26E147C600AD45B7 /* ProductList.swift */,
 				9DACF94F26E1494B00AD45B7 /* ProductListItem.swift */,
 				9DACF93426E0297B00AD45B7 /* ProductView.swift */,
+				9DACF9B326E940E600AD45B7 /* ProductCarousel.swift */,
+				9DACF9B526E9410F00AD45B7 /* ProductCarouselCard.swift */,
 				9DACF96326E1CBEA00AD45B7 /* LoadingView.swift */,
 				9DACF9A126E6727F00AD45B7 /* LottieFiles */,
 			);
@@ -334,6 +340,7 @@
 				9DACF95426E14C2C00AD45B7 /* HomeView.swift in Sources */,
 				9DACF94226E02A1B00AD45B7 /* Product.swift in Sources */,
 				9DACF96826E1CEE700AD45B7 /* CustomPicker.swift in Sources */,
+				9DACF9B426E940E600AD45B7 /* ProductCarousel.swift in Sources */,
 				9DACF95E26E1C55400AD45B7 /* CartListView.swift in Sources */,
 				9DACF94C26E0373900AD45B7 /* ShoppingButtonStyle.swift in Sources */,
 				9DACF95726E1A41600AD45B7 /* MainView.swift in Sources */,
@@ -356,6 +363,7 @@
 				9DACF95C26E1C54700AD45B7 /* CartListItem.swift in Sources */,
 				9DACF9A026E6715600AD45B7 /* CartLoadingView.swift in Sources */,
 				9DACF96026E1C78100AD45B7 /* APIServices.swift in Sources */,
+				9DACF9B626E9410F00AD45B7 /* ProductCarouselCard.swift in Sources */,
 				9DACF93326E0297B00AD45B7 /* ModerneShoppingApp.swift in Sources */,
 				9DACF99926E670BB00AD45B7 /* CartLoading.swift in Sources */,
 				9DACF9A726E6757800AD45B7 /* UserViewModel.swift in Sources */,

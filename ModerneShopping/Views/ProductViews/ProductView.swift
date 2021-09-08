@@ -14,7 +14,7 @@ struct ProductView: View {
     let product: Product
     var body: some View {
         ZStack {
-            Color.white.edgesIgnoringSafeArea(.bottom)
+            Color.background.edgesIgnoringSafeArea(.bottom)
             VStack {
                 Spacer()
                 HStack{

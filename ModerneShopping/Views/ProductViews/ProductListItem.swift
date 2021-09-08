@@ -18,8 +18,10 @@ struct ProductListItem: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             Text("\(product.price.format(f: ".2"))$").bold()
+                .foregroundColor(.darkText)
             HStack(spacing: 2) {
                 Text("\(product.formatedRating)").font(.title3)
+                    .foregroundColor(.darkText)
                 Text("(\(product.rating.manualCount))").font(.caption2)
                     .foregroundColor(.secondary)
                     .offset(y: 3)

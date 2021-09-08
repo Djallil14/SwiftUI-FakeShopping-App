@@ -30,6 +30,14 @@ struct HomeView: View {
                                 }
                             })
                         if productsList.products != nil {
+                            ProductCarousel(products: productsList.products!)
+                                .environmentObject(cart)
+                                .padding(.top)
+                        } else {
+                            LoadingView(isLoading: productsList.isLoading, error: productsList.error){ productsList.loadProducts(with: pickedCategory)
+                            }
+                        }
+                        if productsList.products != nil {
                             ProductList(products: productsList.products!)
                                 .environmentObject(cart)
                         } else {
@@ -54,7 +62,7 @@ struct HomeView: View {
                 trailing:
                     TrailingBarItem().environmentObject(cart)
             )
-        }
+        }.statusBar(hidden: true)
     }
     
 }
