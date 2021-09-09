@@ -13,6 +13,7 @@ struct ProductListItem: View {
         VStack {
             SmallProductImage(imageURL: product.imageURL)
             Text(product.title)
+                .foregroundColor(.darkText)
                 .bold()
                 .lineLimit(2)
                 .multilineTextAlignment(.center)

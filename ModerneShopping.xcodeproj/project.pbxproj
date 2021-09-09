@@ -48,8 +48,9 @@
 		9DACF9B426E940E600AD45B7 /* ProductCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B326E940E600AD45B7 /* ProductCarousel.swift */; };
 		9DACF9B626E9410F00AD45B7 /* ProductCarouselCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B526E9410F00AD45B7 /* ProductCarouselCard.swift */; };
 		9DACF9B826E99DFB00AD45B7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B726E99DFB00AD45B7 /* LoginView.swift */; };
-		9DACF9BB26E9B24E00AD45B7 /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = 9DACF9BA26E9B24E00AD45B7 /* login.json */; };
 		9DACF9BD26E9B26200AD45B7 /* LoginLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9BC26E9B26200AD45B7 /* LoginLottieView.swift */; };
+		9DACF9C326EA55FE00AD45B7 /* shoppingCart.json in Resources */ = {isa = PBXBuildFile; fileRef = 9DACF9C226EA55FE00AD45B7 /* shoppingCart.json */; };
+		9DACF9C526EA5B5700AD45B7 /* TestTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9C426EA5B5700AD45B7 /* TestTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,8 +96,9 @@
 		9DACF9B326E940E600AD45B7 /* ProductCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCarousel.swift; sourceTree = "<group>"; };
 		9DACF9B526E9410F00AD45B7 /* ProductCarouselCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCarouselCard.swift; sourceTree = "<group>"; };
 		9DACF9B726E99DFB00AD45B7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		9DACF9BA26E9B24E00AD45B7 /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
 		9DACF9BC26E9B26200AD45B7 /* LoginLottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLottieView.swift; sourceTree = "<group>"; };
+		9DACF9C226EA55FE00AD45B7 /* shoppingCart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shoppingCart.json; sourceTree = "<group>"; };
+		9DACF9C426EA5B5700AD45B7 /* TestTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				9DACF9B726E99DFB00AD45B7 /* LoginView.swift */,
+				9DACF9C426EA5B5700AD45B7 /* TestTextField.swift */,
 				9DACF9A926E677CA00AD45B7 /* LoggedInView.swift */,
 				9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */,
 				9DACF9B926E9B23B00AD45B7 /* LottieFile */,
@@ -267,7 +270,7 @@
 		9DACF9B926E9B23B00AD45B7 /* LottieFile */ = {
 			isa = PBXGroup;
 			children = (
-				9DACF9BA26E9B24E00AD45B7 /* login.json */,
+				9DACF9C226EA55FE00AD45B7 /* shoppingCart.json */,
 				9DACF9BC26E9B26200AD45B7 /* LoginLottieView.swift */,
 			);
 			path = LottieFile;
@@ -341,7 +344,7 @@
 				9DACF9AC26E6E88100AD45B7 /* api.json in Resources */,
 				9DACF93A26E0297C00AD45B7 /* Preview Assets.xcassets in Resources */,
 				9DACF9A526E672C600AD45B7 /* productLoading.json in Resources */,
-				9DACF9BB26E9B24E00AD45B7 /* login.json in Resources */,
+				9DACF9C326EA55FE00AD45B7 /* shoppingCart.json in Resources */,
 				9DACF93726E0297C00AD45B7 /* Assets.xcassets in Resources */,
 				9DACF99E26E6712300AD45B7 /* cartloading.json in Resources */,
 				9DACF99426E5C92500AD45B7 /* user.json in Resources */,
@@ -372,6 +375,7 @@
 				9DACF94926E02E4400AD45B7 /* ImageLoader.swift in Sources */,
 				9DACF9B226E7E96600AD45B7 /* CheckOutView.swift in Sources */,
 				9DACF95A26E1C4D300AD45B7 /* CartView.swift in Sources */,
+				9DACF9C526EA5B5700AD45B7 /* TestTextField.swift in Sources */,
 				9DACF95026E1494B00AD45B7 /* ProductListItem.swift in Sources */,
 				9DACF9A326E6729800AD45B7 /* ProductLoading.swift in Sources */,
 				9DACF9B026E7139400AD45B7 /* ProfilButtons.swift in Sources */,

@@ -12,7 +12,7 @@ class  UserViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: NSError?
     @Published var isLoggedin = false
-    @Published var login = "admin"
+    @Published var login = "admin@admin.com"
     @Published var password = "admin"
     
     private let userServices: APIServices

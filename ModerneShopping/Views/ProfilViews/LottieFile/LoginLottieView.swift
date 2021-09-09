@@ -15,7 +15,7 @@ struct LoginLottieView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<LoginLottieView>) -> UIView {
         let view = UIView(frame: .zero)
         
-        animationView.animation = Animation.named("login")
+        animationView.animation = Animation.named("shoppingCart")
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         animationView.play()

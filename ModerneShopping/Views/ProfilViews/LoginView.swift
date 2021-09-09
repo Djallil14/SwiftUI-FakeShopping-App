@@ -10,30 +10,113 @@ import SwiftUI
 struct LoginView: View {
     @EnvironmentObject var user: UserViewModel
     @State private var isEditing: Bool = false
-    @State private var isValid: Bool = false
+    @State private var isNameValid: Bool? = nil
+    @State private var isPasswordValid: Bool? = nil
     @State private var showPassword: Bool = false
     var body: some View {
         ZStack{
             Color.background.edgesIgnoringSafeArea(.all)
             VStack(alignment: .center,spacing: 16){
+                Text("Login")
+                    .font(.title3).bold()
                 LoginLottieView()
                     .aspectRatio(contentMode: .fit)
                 Spacer()
-                LoginTextView(name: $user.login, isEditing: $isEditing, isValid: $isValid)
-                PasswordTextView(name: $user.password, isEditing: $isEditing, isValid: $isValid, showPassword: $showPassword)
-                Button(action: {user.loadUser()}){
-                    Text("Sign In")
-                        .font(.headline)
-                        .padding()
-                        .background(Color.secondaryBackground)
-                        .cornerRadius(16)
-                        .shadow(color: .darkText.opacity(0.2), radius: 2, x: 1.0, y: 2)
+                VStack{
+                    HStack {
+                        LoginTextView(name: $user.login, isValid: $isNameValid)
+                        if let nameValid = isNameValid{
+                            if nameValid {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.green)
+                                .padding(8)
+                            } else {
+                                Image(systemName: "xmark")
+                                    .foregroundColor(.red)
+                                    .padding(8)
+                            }
+                        }
+                    }
+                    HStack {
+                        PasswordTextView(name: $user.password, isValid: $isPasswordValid, showPassword: $showPassword)
+                        if let passwordValid = isPasswordValid{
+                            if passwordValid {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.green)
+                                .padding(8)
+                            } else {
+                                Image(systemName: "xmark")
+                                    .foregroundColor(.red)
+                                    .padding(8)
+                            }
+                        }
+                    }
+                    HStack{
+                        Button(action:{}){
+                            Text("Forgot Password ?")
+                                .font(.subheadline).bold()
+                        }
+                        .padding(8)
+                        Spacer()
+                    }
+                    Button(action: {
+                        validateName(name: user.login)
+                        validatePassword(name: user.password)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                            if isNameValid == true && isPasswordValid == true {
+                                user.loadUser()
+                            }
+                        }
+                    }){
+                        Text("Sign In")
+                            .foregroundColor(.darkText)
+                            .font(.headline)
+                            .padding()
+                            .background(Color.secondaryBackground)
+                            .cornerRadius(16)
+                            .shadow(color: .darkText.opacity(0.2), radius: 2, x: 1.0, y: 2)
+                    }
+                    Button(action:{}){
+                        Text("Create an account").font(.headline)
+                            .foregroundColor(.darkText)
+                            .shadow(color: .darkText.opacity(0.1), radius: 2, x: 1, y: 2)
+                    }
                 }
+                .padding()
+                .background(Color.secondaryBackground)
+                .cornerRadius(16)
                 Spacer()
             }.padding()
         }
     }
-    
+    private func validateName(name: String){
+        guard name.count > 5 && name.count < 24 else {
+            withAnimation{
+            isNameValid = false
+            }
+            return
+        }
+        guard name.contains("@") else {
+            withAnimation{
+            isNameValid = false
+            }
+            return
+        }
+        withAnimation{
+        isNameValid = true
+        }
+    }
+    private func validatePassword(name: String){
+        guard name.count > 5 && name.count < 24 else {
+            withAnimation{
+            isPasswordValid = false
+            }
+            return
+        }
+        withAnimation{
+        isPasswordValid = true
+        }
+    }
 }
 
 struct LoginView_Previews: PreviewProvider {
@@ -46,60 +129,57 @@ struct LoginView_Previews: PreviewProvider {
 
 struct LoginTextView: View{
     @Binding var name: String
-    @Binding var isEditing: Bool
-    @Binding var isValid: Bool
+    @Binding var isValid: Bool?
     var body: some View {
         HStack {
-            TextField(
-                    "User name (email address)",
-                text: $name
-                ) { isEditing in
-                    self.isEditing = isEditing
-                } onCommit: {
-                    validate(name: name)
-                }
+            TextField("Username",text: $name)
             .padding()
             .background(Color.background)
             .cornerRadius(16)
-            .shadow(color: .darkText.opacity(0.2), radius: 2, x: 0.0, y: 0.0)
+            .shadow(color: borderColor(condition: isValid), radius: 2, x: 0.0, y: 0.0)
             .disableAutocorrection(true)
             .autocapitalization(.none)
         }
     }
-    private func validate(name: String){
-        isValid = true
+    private func borderColor(condition: Bool?)-> Color{
+        switch condition {
+        case .some(true):
+            return Color.green.opacity(0.8)
+        case .some(false):
+            return Color.red.opacity(0.8)
+        case .none:
+            return Color.darkText.opacity(0.2)
+        }
     }
 }
 
 struct PasswordTextView: View{
     @Binding var name: String
-    @Binding var isEditing: Bool
-    @Binding var isValid: Bool
+    @Binding var isValid: Bool?
     @Binding var showPassword: Bool
     var body: some View {
         Group{
             if !showPassword{
                 HStack {
-                    SecureField(
-                                "User name (email address)",
-                            text: $name
-                            ){
-                                validate(name: name)
-                            }
+                    SecureField("Password",text: $name)
                         .padding()
                         .background(Color.background)
                         .cornerRadius(16)
-                        .shadow(color: .darkText.opacity(0.2), radius: 2, x: 0.0, y: 0.0)
+                        .shadow(color: borderColor(condition: isValid), radius: 2, x: 0.0, y: 0.0)
                         .disableAutocorrection(true)
                     .autocapitalization(.none)
-                    Button(action:{showPassword.toggle()}){
+                    Button(action:{
+                        withAnimation{
+                            showPassword.toggle()
+                        }
+                    }){
                         Image(systemName: "eye")
                             .imageScale(.large)
                     }
                 }
             } else {
                 HStack {
-                    LoginTextView(name: $name, isEditing: $isValid, isValid: $isValid)
+                    LoginTextView(name: $name,isValid: $isValid)
                     Button(action:{showPassword.toggle()}){
                         Image(systemName: "eye.slash")
                             .imageScale(.large)
@@ -108,7 +188,14 @@ struct PasswordTextView: View{
             }
         }
     }
-    private func validate(name: String){
-        isValid = true
+    private func borderColor(condition: Bool?)-> Color{
+        switch condition {
+        case .some(true):
+            return Color.green.opacity(0.8)
+        case .some(false):
+            return Color.red.opacity(0.8)
+        case .none:
+            return Color.darkText.opacity(0.2)
+        }
     }
 }
