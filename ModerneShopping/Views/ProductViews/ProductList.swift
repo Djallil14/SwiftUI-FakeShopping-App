@@ -15,28 +15,28 @@ struct ProductList: View {
     var body: some View {
         LazyVGrid(columns: columns){
             ForEach(products){product in
-                    VStack {
-                        Button(action:{self.product = product}){
+                VStack {
+                    Button(action:{self.product = product}){
                         ProductListItem(product: product)
-                        }
-                        Button(action: {
-                            withAnimation{
-                                cart.addToCart(addedProduct: product, quantity: 1)
-                            }
-                        }, label: {
-                            HStack {
-                                Image(systemName: "cart.badge.plus")
-                                Text("Add to cart")
-                                    .font(.caption)
-                                    .bold()
-                            }.padding(8)
-                            .background(Color.secondaryBackground)
-                            .cornerRadius(18)
-                        })
                     }
-                    .background(Color.background
-                                    .cornerRadius(16)
-                                    .shadow(color: .darkText.opacity(0.05), radius: 2, x: 0.0, y: 0.0))
+                    Button(action: {
+                        withAnimation{
+                            cart.addToCart(addedProduct: product, quantity: 1)
+                        }
+                    }, label: {
+                        HStack {
+                            Image(systemName: "cart.badge.plus")
+                            Text("Add to cart")
+                                .font(.caption)
+                                .bold()
+                        }.padding(8)
+                        .background(Color.secondaryBackground)
+                        .cornerRadius(18)
+                    })
+                }
+                .background(Color.background
+                                .cornerRadius(16)
+                                .shadow(color: .darkText.opacity(0.05), radius: 2, x: 0.0, y: 0.0))
             }
         }.sheet(item: $product){product in
             ProductView(product: product).environmentObject(cart)

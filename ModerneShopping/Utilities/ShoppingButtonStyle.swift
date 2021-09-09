@@ -21,7 +21,7 @@ struct AddCartButtonStyle: ButtonStyle {
                     Text("Added to Cart").bold()
                         .foregroundColor(.tertiary)
                 } else {
-                configuration.label
+                    configuration.label
                 }
                 Spacer()
             }

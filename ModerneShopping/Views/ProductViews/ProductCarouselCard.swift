@@ -14,11 +14,12 @@ struct ProductCarouselCard: View {
             HStack {
                 ProductCarouselImage(imageURL: product.imageURL)
                 VStack(alignment: .leading){
-                Text(product.title)
-                    .font(.subheadline)
-                    .lineLimit(3)
-                Text("\(product.price.format(f: ".2"))$")
-                    .padding(4)
+                    Text(product.title)
+                        .font(.subheadline)
+                        .lineLimit(3)
+                    Text("\(product.price.format(f: ".2"))$")
+                        .bold()
+                        .padding(4)
                 }.foregroundColor(.darkText)
                 Spacer()
             }

@@ -21,12 +21,13 @@ struct ProductCarousel: View {
                             self.product = product
                         }
                     }){
-                    ProductCarouselCard(product: product)
-                        .frame(width: (screenSize.width - 24))
-                        .shadow(color: .darkText.opacity(0.1), radius: 3, x: 1, y: 2)
+                        ProductCarouselCard(product: product)
+                            .frame(width: (screenSize.width - 24))
+                            .shadow(color: .darkText.opacity(0.1), radius: 3, x: 1, y: 2)
                     }
                 }
-            }.padding(.leading)
+            }.padding(.leading, 16)
+            .padding(.vertical, 8)
             .sheet(item: $product){product in
                 ProductView(product: product).environmentObject(cart)
             }

@@ -51,7 +51,7 @@ struct CheckOutView: View {
                         .background(Color.background)
                         .padding(.horizontal)
                     }
-
+                    
                     Text("Taxes: \(taxes.format(f: ".02"))$")
                         .font(.caption)
                         .padding(.top)

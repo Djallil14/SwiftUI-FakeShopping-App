@@ -34,7 +34,7 @@ class  UserViewModel: ObservableObject {
         // calling the api function and assigning the user if found
         userServices.fetchUser { (result) in
             DispatchQueue.main.async {
-            self.isLoading = true
+                self.isLoading = true
             }
             switch result {
             case .success(let response):
@@ -45,12 +45,13 @@ class  UserViewModel: ObservableObject {
             case .failure(let error):
                 DispatchQueue.main.async {
                     print(error)
-                self.error = error as NSError
+                    self.error = error as NSError
                 }
             }
         }
     }
-     func signout(){
+    /// signing out and reseting the login view
+    func signout(){
         isLoading = true
         isNameValid = nil
         isPasswordValid = nil
@@ -60,32 +61,36 @@ class  UserViewModel: ObservableObject {
             self.isLoading = false
         }
     }
+    /// validate if the username respect our conditions
+    /// - Parameter name: username
     func validateName(name: String){
         guard name.count > 5 && name.count < 24 else {
             withAnimation{
-            isNameValid = false
+                isNameValid = false
             }
             return
         }
         guard name.contains("@") else {
             withAnimation{
-            isNameValid = false
+                isNameValid = false
             }
             return
         }
         withAnimation{
-        isNameValid = true
+            isNameValid = true
         }
     }
+    /// validate if the password respect our conditions
+    /// - Parameter name: password
     func validatePassword(name: String){
         guard name.count >= 5 && name.count < 24 else {
             withAnimation{
-            isPasswordValid = false
+                isPasswordValid = false
             }
             return
         }
         withAnimation{
-        isPasswordValid = true
+            isPasswordValid = true
         }
     }
 }

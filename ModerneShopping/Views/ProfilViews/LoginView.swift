@@ -27,9 +27,9 @@ struct LoginView: View {
                         LoginTextView(name: $user.login, isValid: $user.isNameValid)
                         if let nameValid = user.isNameValid{
                             if nameValid {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.green)
-                                .padding(8)
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.green)
+                                    .padding(8)
                             } else {
                                 Image(systemName: "xmark")
                                     .foregroundColor(.red)
@@ -41,9 +41,9 @@ struct LoginView: View {
                         PasswordTextView(name: $user.password, isValid: $user.isPasswordValid, showPassword: $showPassword)
                         if let passwordValid = user.isPasswordValid{
                             if passwordValid {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.green)
-                                .padding(8)
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.green)
+                                    .padding(8)
                             } else {
                                 Image(systemName: "xmark")
                                     .foregroundColor(.red)
@@ -68,7 +68,7 @@ struct LoginView: View {
                             if user.isNameValid == true &&
                                 user.isPasswordValid == true {
                                 withAnimation{
-                                user.loadUser()
+                                    user.loadUser()
                                 }
                             } else {
                                 withAnimation{
@@ -104,7 +104,6 @@ struct LoginView: View {
             }
         }
     }
-    
 }
 
 struct LoginView_Previews: PreviewProvider {
@@ -121,12 +120,12 @@ struct LoginTextView: View{
     var body: some View {
         HStack {
             TextField("Username",text: $name)
-            .padding()
-            .background(Color.background)
-            .cornerRadius(16)
-            .shadow(color: borderColor(condition: isValid), radius: 2, x: 0.0, y: 0.0)
-            .disableAutocorrection(true)
-            .autocapitalization(.none)
+                .padding()
+                .background(Color.background)
+                .cornerRadius(16)
+                .shadow(color: borderColor(condition: isValid), radius: 2, x: 0.0, y: 0.0)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
         }
     }
     private func borderColor(condition: Bool?)-> Color{
@@ -155,7 +154,7 @@ struct PasswordTextView: View{
                         .cornerRadius(16)
                         .shadow(color: borderColor(condition: isValid), radius: 2, x: 0.0, y: 0.0)
                         .disableAutocorrection(true)
-                    .autocapitalization(.none)
+                        .autocapitalization(.none)
                     Button(action:{
                         withAnimation{
                             showPassword.toggle()

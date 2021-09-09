@@ -18,49 +18,56 @@ struct CartView: View {
     @ObservedObject var cartProducts: CartViewModel
     @State var showDelete: Bool = false
     var body: some View {
-            let productsDic = cartProducts.cartProductDic.map({$0.key})
-            ZStack {
-                Color.background.edgesIgnoringSafeArea(.all)
-                VStack{
-                    if cartProducts.cartProductDic.isEmpty {
-                        CartLoadingView()
-                    } else {
-                        CartListView(cart: cartProducts, products: cartProducts.cartProductDic, showDelete: $showDelete)
-                    }
-                    Text("Total: \(cartProducts.totalPrice.format(f: ".2"))$")
-                    Button(action: {withAnimation{cartProducts.showShowcaseSheet.toggle()}}, label: {
-                        HStack {
-                            Text("Check out").bold()
-                            Image(systemName: "creditcard")
-                        }.padding()
-                        .foregroundColor(.tertiary)
-                    })
-                    .background(Color.accentColor)
-                    .cornerRadius(12)
-                    .padding()
-                }.onChange(of: cartProducts.cartProductDic, perform: { value in
-                    cartProducts.calculateTotalPrice()
-                })
-            }
-            .overlay(
-                Group {
-                    if cartProducts.showShowcaseSheet{
-                        CheckOutView(products: productsDic, price: cartProducts.totalPrice).environmentObject(cartProducts)
-                    } else {
-                        EmptyView()
-                    }
+        let productsDic = cartProducts.cartProductDic.map({$0.key})
+        ZStack {
+            Color.background.edgesIgnoringSafeArea(.all)
+            VStack{
+                if !productsDic.isEmpty{
+                    HStack{
+                        Text("Cart")
+                            .font(.title2).bold()
+                        Spacer()
+                        trailingItem
+                            
+                    }.padding()
                 }
-            )
-            .navigationTitle("Cart")
-            .navigationBarItems(trailing: trailingItem)
-            .onAppear{
+                if cartProducts.cartProductDic.isEmpty {
+                    CartLoadingView()
+                } else {
+                    CartListView(cart: cartProducts, products: cartProducts.cartProductDic, showDelete: $showDelete)
+                }
+                Text("Total: \(cartProducts.totalPrice.format(f: ".2"))$")
+                Button(action: {withAnimation{cartProducts.showShowcaseSheet.toggle()}}, label: {
+                    HStack {
+                        Text("Check out").bold()
+                        Image(systemName: "creditcard")
+                    }.padding()
+                    .foregroundColor(.tertiary)
+                })
+                .background(Color.accentColor)
+                .cornerRadius(12)
+                .padding()
+            }.onChange(of: cartProducts.cartProductDic, perform: { value in
+                cartProducts.calculateTotalPrice()
+            })
+        }
+        .overlay(
+            Group {
+                if cartProducts.showShowcaseSheet{
+                    CheckOutView(products: productsDic, price: cartProducts.totalPrice).environmentObject(cartProducts)
+                } else {
+                    EmptyView()
+                }
+            }
+        )
+        .onAppear{
             showDelete = false
             cartProducts.calculateTotalPrice()
         }
     }
     var trailingItem: some View {
         Button(action:{withAnimation {showDelete.toggle()}}){
-            Image(systemName:"trash")
+            Image(systemName:"slider.horizontal.3")
         }
     }
 }
