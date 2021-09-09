@@ -55,9 +55,7 @@ struct HomeView: View {
             }.navigationBarTitleDisplayMode(.large)
             .navigationBarItems(
                 leading: NavigationLink(destination:ProfilView().environmentObject(user)){
-                    if let user = user.user?.results[0]{
-                    leadingBarItem(user: user)
-                    }
+                    leadingBarItem(user: user.user?.results[0])
                 },
                 trailing:
                     TrailingBarItem().environmentObject(cart)
@@ -100,7 +98,7 @@ struct TrailingBarItem: View {
 
 struct leadingBarItem: View {
     @StateObject var imageLoader = ImageLoader()
-    let user: User
+    let user: User?
     var body: some View {
         ZStack {
             Circle()
@@ -108,20 +106,28 @@ struct leadingBarItem: View {
                 .frame(width: 40, height: 40)
                 .overlay(
                     Group{
-                        if let image = imageLoader.image{
-                            Image(uiImage: image)
-                                .resizable()
-                                .clipped()
-                                .clipShape(Circle())
-                        }
-                        else {
-                            LoadingView(isLoading: imageLoader.isLoading, error: nil, retryAction:{ imageLoader.loadImage(with: URL(string: user.picture.thumbnail)!)})
+                        if let user = self.user {
+                            if let image = imageLoader.image{
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .clipped()
+                                    .clipShape(Circle())
+                            }
+                            else {
+                                LoadingView(isLoading: imageLoader.isLoading, error: nil, retryAction:{ imageLoader.loadImage(with: URL(string: user.picture.thumbnail)!)})
+                            }
+                        } else {
+                            Image(systemName: "person")
+                                .foregroundColor(.darkText)
+                                .imageScale(.large)
                         }
                     }
                 )
                 .overlay(Circle().stroke(lineWidth: 2).foregroundColor(Color.darkText))
         }.onAppear{
-            imageLoader.loadImage(with: URL(string: user.picture.thumbnail)!)
+            if let user = self.user{
+                imageLoader.loadImage(with: URL(string: user.picture.thumbnail)!)
+            }
         }
     }
     

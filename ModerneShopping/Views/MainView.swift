@@ -30,8 +30,6 @@ struct MainView: View {
                     Image(systemName: "person")
                     Text("Profil")
                 }
-        }.onAppear{
-            user.loadUser()
         }
         .zIndex(10)
     }

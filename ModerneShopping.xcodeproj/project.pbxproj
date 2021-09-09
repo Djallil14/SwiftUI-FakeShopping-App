@@ -47,6 +47,9 @@
 		9DACF9B226E7E96600AD45B7 /* CheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B126E7E96600AD45B7 /* CheckOutView.swift */; };
 		9DACF9B426E940E600AD45B7 /* ProductCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B326E940E600AD45B7 /* ProductCarousel.swift */; };
 		9DACF9B626E9410F00AD45B7 /* ProductCarouselCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B526E9410F00AD45B7 /* ProductCarouselCard.swift */; };
+		9DACF9B826E99DFB00AD45B7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B726E99DFB00AD45B7 /* LoginView.swift */; };
+		9DACF9BB26E9B24E00AD45B7 /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = 9DACF9BA26E9B24E00AD45B7 /* login.json */; };
+		9DACF9BD26E9B26200AD45B7 /* LoginLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9BC26E9B26200AD45B7 /* LoginLottieView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +94,9 @@
 		9DACF9B126E7E96600AD45B7 /* CheckOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutView.swift; sourceTree = "<group>"; };
 		9DACF9B326E940E600AD45B7 /* ProductCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCarousel.swift; sourceTree = "<group>"; };
 		9DACF9B526E9410F00AD45B7 /* ProductCarouselCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCarouselCard.swift; sourceTree = "<group>"; };
+		9DACF9B726E99DFB00AD45B7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9DACF9BA26E9B24E00AD45B7 /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
+		9DACF9BC26E9B26200AD45B7 /* LoginLottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLottieView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,10 +256,21 @@
 		9DACF9A826E677A700AD45B7 /* ProfilViews */ = {
 			isa = PBXGroup;
 			children = (
+				9DACF9B726E99DFB00AD45B7 /* LoginView.swift */,
 				9DACF9A926E677CA00AD45B7 /* LoggedInView.swift */,
 				9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */,
+				9DACF9B926E9B23B00AD45B7 /* LottieFile */,
 			);
 			path = ProfilViews;
+			sourceTree = "<group>";
+		};
+		9DACF9B926E9B23B00AD45B7 /* LottieFile */ = {
+			isa = PBXGroup;
+			children = (
+				9DACF9BA26E9B24E00AD45B7 /* login.json */,
+				9DACF9BC26E9B26200AD45B7 /* LoginLottieView.swift */,
+			);
+			path = LottieFile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +341,7 @@
 				9DACF9AC26E6E88100AD45B7 /* api.json in Resources */,
 				9DACF93A26E0297C00AD45B7 /* Preview Assets.xcassets in Resources */,
 				9DACF9A526E672C600AD45B7 /* productLoading.json in Resources */,
+				9DACF9BB26E9B24E00AD45B7 /* login.json in Resources */,
 				9DACF93726E0297C00AD45B7 /* Assets.xcassets in Resources */,
 				9DACF99E26E6712300AD45B7 /* cartloading.json in Resources */,
 				9DACF99426E5C92500AD45B7 /* user.json in Resources */,
@@ -364,9 +382,11 @@
 				9DACF9A026E6715600AD45B7 /* CartLoadingView.swift in Sources */,
 				9DACF96026E1C78100AD45B7 /* APIServices.swift in Sources */,
 				9DACF9B626E9410F00AD45B7 /* ProductCarouselCard.swift in Sources */,
+				9DACF9BD26E9B26200AD45B7 /* LoginLottieView.swift in Sources */,
 				9DACF93326E0297B00AD45B7 /* ModerneShoppingApp.swift in Sources */,
 				9DACF99926E670BB00AD45B7 /* CartLoading.swift in Sources */,
 				9DACF9A726E6757800AD45B7 /* UserViewModel.swift in Sources */,
+				9DACF9B826E99DFB00AD45B7 /* LoginView.swift in Sources */,
 				9DACF99626E5C95500AD45B7 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -63,6 +63,7 @@ struct ProfilButtons: View {
                 .shadow(color: .accentColor.opacity(0.1), radius: 2, x: 0.5, y: 1)
             }
         }.padding()
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

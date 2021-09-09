@@ -11,6 +11,9 @@ class  UserViewModel: ObservableObject {
     @Published var user: Results?
     @Published var isLoading = false
     @Published var error: NSError?
+    @Published var isLoggedin = false
+    @Published var login = "admin"
+    @Published var password = "admin"
     
     private let userServices: APIServices
     
@@ -40,5 +43,11 @@ class  UserViewModel: ObservableObject {
                 }
             }
         }
+    }
+    private func signin(){
+        self.isLoggedin = true
+    }
+    private func signout(){
+        self.isLoggedin = false
     }
 }
