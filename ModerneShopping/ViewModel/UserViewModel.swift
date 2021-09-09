@@ -23,11 +23,15 @@ class  UserViewModel: ObservableObject {
         self.userServices = userServices
     }
     
+    /// Calling the API Service VM Getting a user through random generated user API
     func loadUser(){
+        // setting the user to nil to load a fresh one
         self.user = nil
+        // showing the spining loading view, using the main thread for UI Work
         DispatchQueue.main.async {
             self.isLoading = true
         }
+        // calling the api function and assigning the user if found
         userServices.fetchUser { (result) in
             DispatchQueue.main.async {
             self.isLoading = true
@@ -48,8 +52,13 @@ class  UserViewModel: ObservableObject {
     }
      func signout(){
         isLoading = true
-        self.user = nil
-        isLoading = false
+        isNameValid = nil
+        isPasswordValid = nil
+        // Delaying the logout to see the Loading animation
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            self.user = nil
+            self.isLoading = false
+        }
     }
     func validateName(name: String){
         guard name.count > 5 && name.count < 24 else {

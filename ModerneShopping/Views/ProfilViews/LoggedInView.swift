@@ -9,6 +9,7 @@ import SwiftUI
 import MapKit
 
 struct LoggedInView: View {
+    @EnvironmentObject var users: UserViewModel
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
     let user: User
     var body: some View {
@@ -19,7 +20,7 @@ struct LoggedInView: View {
                     HeaderLoggedInView(user: user)
                         .padding(.bottom)
                     Divider()
-                    ProfilButtons()
+                    ProfilButtons().environmentObject(users)
                     Spacer()
                     MapView(region: $region, user: user)
                         .shadow(color: .darkText.opacity(0.2), radius: 4, x: 1, y: 2)

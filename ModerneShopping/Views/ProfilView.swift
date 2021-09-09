@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct ProfilView: View {
-    @EnvironmentObject var user: UserViewModel
+    @EnvironmentObject var userVM: UserViewModel
     @StateObject var imageLoader = ImageLoader()
     var body: some View {
         ZStack {
             VStack{
-                if let user = user.user{
+                if let user = userVM.user{
                     LoggedInView(user: user.results[0])
+                        .environmentObject(userVM)
                 } else {
-                    LoginView().environmentObject(user)
+                    LoginView().environmentObject(userVM)
                 }
             }
-            if user.isLoading{
+            if userVM.isLoading{
                 ZStack{
                     Color.background.edgesIgnoringSafeArea(.all)
                     ProductLoading()
