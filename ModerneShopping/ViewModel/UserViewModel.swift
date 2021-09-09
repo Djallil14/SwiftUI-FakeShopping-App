@@ -44,10 +44,9 @@ class  UserViewModel: ObservableObject {
             }
         }
     }
-    private func signin(){
-        self.isLoggedin = true
-    }
-    private func signout(){
-        self.isLoggedin = false
+     func signout(){
+        isLoading = true
+        self.user = nil
+        isLoading = false
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfilButtons: View {
+    @EnvironmentObject var user: UserViewModel
     var body: some View {
         VStack {
             NavigationLink(destination: ZStack {
@@ -49,13 +50,10 @@ struct ProfilButtons: View {
                 .cornerRadius(12)
                 .shadow(color: .accentColor.opacity(0.1), radius: 2, x: 0.5, y: 1)
             }
-            NavigationLink(destination: ZStack {
-                Color.background.edgesIgnoringSafeArea(.all)
-                Text("Settings")
-            }){
+            Button(action:{withAnimation{user.signout()}}){
                 HStack {
-                    Text("Settings")
-                    Image(systemName: "gear")
+                    Text("Sign out")
+                    Image(systemName: "person.crop.circle.fill.badge.xmark")
                 }.font(.headline)
                 .padding()
                 .background(Color.secondaryBackground)
