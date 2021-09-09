@@ -9,10 +9,10 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var user: UserViewModel
-    @State private var isEditing: Bool = false
     @State private var isNameValid: Bool? = nil
     @State private var isPasswordValid: Bool? = nil
     @State private var showPassword: Bool = false
+    @State private var showSheet: Bool = false
     var body: some View {
         ZStack{
             Color.background.edgesIgnoringSafeArea(.all)
@@ -24,8 +24,8 @@ struct LoginView: View {
                 Spacer()
                 VStack{
                     HStack {
-                        LoginTextView(name: $user.login, isValid: $isNameValid)
-                        if let nameValid = isNameValid{
+                        LoginTextView(name: $user.login, isValid: $user.isNameValid)
+                        if let nameValid = user.isNameValid{
                             if nameValid {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.green)
@@ -38,8 +38,8 @@ struct LoginView: View {
                         }
                     }
                     HStack {
-                        PasswordTextView(name: $user.password, isValid: $isPasswordValid, showPassword: $showPassword)
-                        if let passwordValid = isPasswordValid{
+                        PasswordTextView(name: $user.password, isValid: $user.isPasswordValid, showPassword: $showPassword)
+                        if let passwordValid = user.isPasswordValid{
                             if passwordValid {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.green)
@@ -52,7 +52,9 @@ struct LoginView: View {
                         }
                     }
                     HStack{
-                        Button(action:{}){
+                        Button(action:{withAnimation{
+                            showSheet.toggle()
+                        }}){
                             Text("Forgot Password ?")
                                 .font(.subheadline).bold()
                         }
@@ -60,11 +62,19 @@ struct LoginView: View {
                         Spacer()
                     }
                     Button(action: {
-                        validateName(name: user.login)
-                        validatePassword(name: user.password)
+                        user.validateName(name: user.login)
+                        user.validatePassword(name: user.password)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-                            if isNameValid == true && isPasswordValid == true {
+                            if user.isNameValid == true &&
+                                user.isPasswordValid == true {
+                                withAnimation{
                                 user.loadUser()
+                                }
+                            } else {
+                                withAnimation{
+                                    user.isNameValid = nil
+                                    user.isPasswordValid = nil
+                                }
                             }
                         }
                     }){
@@ -76,7 +86,9 @@ struct LoginView: View {
                             .cornerRadius(16)
                             .shadow(color: .darkText.opacity(0.2), radius: 2, x: 1.0, y: 2)
                     }
-                    Button(action:{}){
+                    Button(action:{withAnimation{
+                        showSheet.toggle()
+                    }}){
                         Text("Create an account").font(.headline)
                             .foregroundColor(.darkText)
                             .shadow(color: .darkText.opacity(0.1), radius: 2, x: 1, y: 2)
@@ -87,36 +99,12 @@ struct LoginView: View {
                 .cornerRadius(16)
                 Spacer()
             }.padding()
+            .sheet(isPresented: $showSheet){
+                Text("Create an account or forgot password")
+            }
         }
     }
-    private func validateName(name: String){
-        guard name.count > 5 && name.count < 24 else {
-            withAnimation{
-            isNameValid = false
-            }
-            return
-        }
-        guard name.contains("@") else {
-            withAnimation{
-            isNameValid = false
-            }
-            return
-        }
-        withAnimation{
-        isNameValid = true
-        }
-    }
-    private func validatePassword(name: String){
-        guard name.count > 5 && name.count < 24 else {
-            withAnimation{
-            isPasswordValid = false
-            }
-            return
-        }
-        withAnimation{
-        isPasswordValid = true
-        }
-    }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {

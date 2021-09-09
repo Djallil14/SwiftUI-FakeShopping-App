@@ -5,7 +5,7 @@
 //  Created by Djallil Elkebir on 2021-09-06.
 //
 
-import Foundation
+import SwiftUI
 
 class  UserViewModel: ObservableObject {
     @Published var user: Results?
@@ -14,6 +14,8 @@ class  UserViewModel: ObservableObject {
     @Published var isLoggedin = false
     @Published var login = "admin@admin.com"
     @Published var password = "admin"
+    @Published var isNameValid: Bool? = nil
+    @Published var isPasswordValid: Bool? = nil
     
     private let userServices: APIServices
     
@@ -48,5 +50,33 @@ class  UserViewModel: ObservableObject {
         isLoading = true
         self.user = nil
         isLoading = false
+    }
+    func validateName(name: String){
+        guard name.count > 5 && name.count < 24 else {
+            withAnimation{
+            isNameValid = false
+            }
+            return
+        }
+        guard name.contains("@") else {
+            withAnimation{
+            isNameValid = false
+            }
+            return
+        }
+        withAnimation{
+        isNameValid = true
+        }
+    }
+    func validatePassword(name: String){
+        guard name.count >= 5 && name.count < 24 else {
+            withAnimation{
+            isPasswordValid = false
+            }
+            return
+        }
+        withAnimation{
+        isPasswordValid = true
+        }
     }
 }
