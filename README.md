@@ -1,3 +1,7 @@
+
+
+
+
 # SwiftUI-FakeShopping-App
 A shopping app fully made in SwiftUI for iOS 14.1.
 
@@ -10,7 +14,7 @@ the black and white theme is made because the product API returns a jpg image wi
 ![FirstImage](https://user-images.githubusercontent.com/82174673/133019472-8c9fed6d-f4d3-408a-ae4d-4878f35c8ac9.png)
 ![SecondImage](https://user-images.githubusercontent.com/82174673/133019476-2d09b367-b317-4540-9ed2-86565ac725ed.png)
 # Recording
-https://user-images.githubusercontent.com/82174673/132419473-d6f6bd83-f9a6-4b42-9000-25aed20f31ae.mov
+https://user-images.githubusercontent.com/82174673/133020940-5d3157bd-8db9-48da-84a4-7f30b184839c.mov
 
 # Lottie files credit:
 [Luis Eduardo Andrade](https://lottiefiles.com/user/198076)
