@@ -85,7 +85,9 @@ struct TrailingBarItem: View {
                                 Circle().fill(Color.secondaryBackground)
                                 Text("\(cart.cartProductDic.keys.count)")
                                     .font(.caption)
+                                    .accessibility(identifier:"cartItemsNumber")
                                     .foregroundColor(.darkText)
+                                    
                             }
                             Spacer()
                         }
@@ -93,6 +95,7 @@ struct TrailingBarItem: View {
                     .shadow(color: .darkText.opacity(0.2), radius: 2, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
                 )
         }.accentColor(.darkText)
+        .accessibility(identifier: "trailingNavigationBarItem")
     }
 }
 

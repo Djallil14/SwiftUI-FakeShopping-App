@@ -29,10 +29,11 @@ struct ProductList: View {
                             Text("Add to cart")
                                 .font(.caption)
                                 .bold()
-                        }.padding(8)
+                        }
+                        .padding(8)
                         .background(Color.secondaryBackground)
                         .cornerRadius(18)
-                    })
+                    }).accessibility(identifier: "Add to cart\(product.id)")
                 }
                 .background(Color.background
                                 .cornerRadius(16)
