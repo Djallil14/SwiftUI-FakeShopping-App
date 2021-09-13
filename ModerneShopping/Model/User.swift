@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Results: Codable {
+struct UserAPIResults: Codable {
     var results: [User]
     var info: APIInfo
 }
@@ -56,9 +56,9 @@ struct Picture: Codable {
 
 
 
-extension User {
-    static var sampleProducts: Results {
-        let response: Results? = try? Bundle.main.loadAndDecodeJSON(filename: "api")
-        return response ?? Results(results: [], info: APIInfo(seed: "", results: 1, page: 1, version: ""))
+extension UserAPIResults {
+    static var sampleUsers: UserAPIResults {
+        let response: UserAPIResults? = try? Bundle.main.loadAndDecodeJSON(filename: "api")
+        return response ?? UserAPIResults(results: [], info: APIInfo(seed: "", results: 1, page: 1, version: ""))
     }
 }

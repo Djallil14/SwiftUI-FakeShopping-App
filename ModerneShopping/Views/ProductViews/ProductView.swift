@@ -10,6 +10,7 @@ import SwiftUI
 struct ProductView: View {
     @EnvironmentObject var cart: CartViewModel
     @Environment(\.presentationMode) var presentation
+    // deprecated in iOS 15 we should use @Environment(.\dismiss) var dismiss
     @State private var quantity: Int = 1
     let product: Product
     var body: some View {
@@ -119,3 +120,6 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(CartViewModel())
     }
 }
+
+//.padding(.leading, product == products.first ? 12 : 0)
+//.padding(.trailing, product == products.last ? 12 : 0)

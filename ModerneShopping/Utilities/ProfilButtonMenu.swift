@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Styling to the button in the profil view
 struct ProfilButtonMenu: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label

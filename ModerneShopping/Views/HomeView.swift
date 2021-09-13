@@ -18,7 +18,7 @@ struct HomeView: View {
                 Color.background.edgesIgnoringSafeArea(.all)
                 ScrollView(.vertical){
                     VStack(alignment: .center) {
-                        Text("Hello, \(user.user?.results[0].name.first ?? "") \(user.user?.results[0].name.last ?? "Welcome") ! \n Enjoy your shopping 🥳")
+                        Text("Hello \(user.user?.results[0].name.first ?? "")! \n Enjoy your shopping 🥳")
                             .font(.title).bold()
                             .multilineTextAlignment(.center)
                             .blendMode(.overlay)
@@ -30,7 +30,7 @@ struct HomeView: View {
                                 }
                             })
                         if productsList.products != nil {
-                            ProductCarousel(products: productsList.products!.shuffled())
+                            ProductCarousel(products: productsList.featuredProduct)
                                 .environmentObject(cart)
                                 .padding(.top)
                         } else {
@@ -92,7 +92,7 @@ struct TrailingBarItem: View {
                     }.offset(x: 10, y: -10)
                     .shadow(color: .darkText.opacity(0.2), radius: 2, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
                 )
-        }
+        }.accentColor(.darkText)
     }
 }
 

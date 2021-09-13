@@ -11,6 +11,7 @@ struct CustomPicker: View {
     @Binding var choosenCategory: ProductListEndpoint
     var body: some View {
         HStack(spacing:0){
+            // enumerating all the product category
             ForEach(ProductListEndpoint.allCases, id: \.self){category in
                 VStack {
                     Button(action: {

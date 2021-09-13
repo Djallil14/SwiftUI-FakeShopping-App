@@ -40,7 +40,7 @@ struct LoggedInView: View {
 
 struct LoggedInView_Previews: PreviewProvider {
     static var previews: some View {
-        LoggedInView(user: User.sampleProducts.results[0])
+        LoggedInView(user: UserAPIResults.sampleUsers.results[0])
     }
 }
 

@@ -34,7 +34,7 @@ extension Product {
 
 struct Rating: Codable, Hashable {
     let rate: Double
-    // to remplace with let count one the api bug is updated https://github.com/keikaavousi/fake-store-api/issues/31
+    // to remplace with let count when the api bug is fixed https://github.com/keikaavousi/fake-store-api/issues/31
     // let count: Int
     let manualCount: Int = Int.random(in: 0...500)
 }

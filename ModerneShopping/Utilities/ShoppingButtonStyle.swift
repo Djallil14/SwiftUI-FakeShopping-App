@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Add a styling to the add cart button in product view, change to green and success when added to the cart
 struct AddCartButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         VStack(alignment: .leading) {

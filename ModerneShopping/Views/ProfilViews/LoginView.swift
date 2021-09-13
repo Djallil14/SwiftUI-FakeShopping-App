@@ -123,21 +123,12 @@ struct LoginTextView: View{
                 .padding()
                 .background(Color.background)
                 .cornerRadius(16)
-                .shadow(color: borderColor(condition: isValid), radius: 2, x: 0.0, y: 0.0)
+                .shadow(color: .borderColor(condition: isValid), radius: 2, x: 0.0, y: 0.0)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
         }
     }
-    private func borderColor(condition: Bool?)-> Color{
-        switch condition {
-        case .some(true):
-            return Color.green.opacity(0.8)
-        case .some(false):
-            return Color.red.opacity(0.8)
-        case .none:
-            return Color.darkText.opacity(0.2)
-        }
-    }
+
 }
 
 struct PasswordTextView: View{
@@ -152,7 +143,7 @@ struct PasswordTextView: View{
                         .padding()
                         .background(Color.background)
                         .cornerRadius(16)
-                        .shadow(color: borderColor(condition: isValid), radius: 2, x: 0.0, y: 0.0)
+                        .shadow(color: .borderColor(condition: isValid), radius: 2, x: 0.0, y: 0.0)
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
                     Button(action:{
@@ -173,16 +164,6 @@ struct PasswordTextView: View{
                     }
                 }
             }
-        }
-    }
-    private func borderColor(condition: Bool?)-> Color{
-        switch condition {
-        case .some(true):
-            return Color.green.opacity(0.8)
-        case .some(false):
-            return Color.red.opacity(0.8)
-        case .none:
-            return Color.darkText.opacity(0.2)
         }
     }
 }

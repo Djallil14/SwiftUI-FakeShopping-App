@@ -20,6 +20,13 @@ struct ProductCarouselCard: View {
                     Text("\(product.price.format(f: ".2"))$")
                         .bold()
                         .padding(4)
+                    HStack(spacing: 2) {
+                        Text("\(product.formatedRating)")
+                            .font(.footnote)
+                        Text("(\(product.rating.manualCount))")
+                            .font(.caption)
+                            .offset(y:2)
+                    }
                 }.foregroundColor(.darkText)
                 Spacer()
             }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 class  UserViewModel: ObservableObject {
-    @Published var user: Results?
+    @Published var user: UserAPIResults?
     @Published var isLoading = false
     @Published var error: NSError?
     @Published var isLoggedin = false
@@ -17,9 +17,9 @@ class  UserViewModel: ObservableObject {
     @Published var isNameValid: Bool? = nil
     @Published var isPasswordValid: Bool? = nil
     
-    private let userServices: APIServices
+    private let userServices: APIServicesProtocol
     
-    init(userServices: APIServices = APIServices.shared){
+    init(userServices: APIServicesProtocol = APIServices.shared){
         self.userServices = userServices
     }
     

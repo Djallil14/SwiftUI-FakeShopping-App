@@ -38,7 +38,7 @@ struct CartListView: View {
                     CartListItem(cart: cart,product: key, quantity: products[key] ?? 0)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         .offset(x:showDelete ? 100 : 0)
-                }
+                }.listRowBackground(Color.background)
             }
         }
     }

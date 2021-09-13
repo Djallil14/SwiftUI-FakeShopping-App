@@ -12,10 +12,20 @@ class  ProductsListObject: ObservableObject {
     @Published var isLoading = false
     @Published var error: NSError?
     
-    /// Getting the api services singleton
-    private let productListServices: APIServices
+    var featuredProduct : [Product] {
+        var fProducts: [Product] = []
+        if let products = self.products  {
+            if products.count >= 4 {
+            fProducts = products[0...3].shuffled()
+            }
+        }
+        return fProducts
+    }
     
-    init(productServices: APIServices = APIServices.shared){
+    /// Getting the api services singleton
+    private let productListServices: APIServicesProtocol
+    
+    init(productServices: APIServicesProtocol = APIServices.shared){
         self.productListServices = productServices
     }
     
@@ -39,6 +49,7 @@ class  ProductsListObject: ObservableObject {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.error = error as NSError
+                    print(error.localizedDescription)
                 }
             }
         }

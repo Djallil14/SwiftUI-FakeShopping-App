@@ -11,6 +11,7 @@ struct CartView: View {
     @EnvironmentObject var user: UserViewModel
     init(cartProducts: CartViewModel){
         self.cartProducts = cartProducts
+        // using UIKit list styling (iOS 15 fixes that)
         UITableView.appearance().separatorStyle = .none
         UITableViewCell.appearance().backgroundColor = UIColor(Color.background)
         UITableView.appearance().backgroundColor = UIColor(Color.background)
@@ -47,10 +48,11 @@ struct CartView: View {
                 .background(Color.accentColor)
                 .cornerRadius(12)
                 .padding()
+                .disabled(cartProducts.cartProductDic.isEmpty)
             }.onChange(of: cartProducts.cartProductDic, perform: { value in
                 cartProducts.calculateTotalPrice()
             })
-        }
+        }.accentColor(.darkText)
         .overlay(
             Group {
                 if cartProducts.showShowcaseSheet{
@@ -68,7 +70,7 @@ struct CartView: View {
     var trailingItem: some View {
         Button(action:{withAnimation {showDelete.toggle()}}){
             Image(systemName:"slider.horizontal.3")
-        }
+        }.accentColor(.darkText)
     }
 }
 

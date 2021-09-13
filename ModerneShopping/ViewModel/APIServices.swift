@@ -7,7 +7,12 @@
 
 import Foundation
 
-class APIServices {
+protocol APIServicesProtocol {
+    func fetchProducts(from endpoint: ProductListEndpoint, completion: @escaping (Result<[Product], APICallError>) -> ())
+    func fetchUser(completion: @escaping (Result<UserAPIResults, APICallError>) -> ())
+}
+
+class APIServices: APIServicesProtocol {
     
     /// Shared Signleton of the api calls
     static let shared = APIServices()
@@ -28,7 +33,7 @@ class APIServices {
     }
     /// API Call to Random Generated User API
     /// - Parameter completion: return a user
-    func fetchUser(completion: @escaping (Result<Results, APICallError>) -> ()){
+    func fetchUser(completion: @escaping (Result<UserAPIResults, APICallError>) -> ()){
         guard let url = URL(string: "\(userURL)") else {
             completion(.failure(.invalidEndpoint))
             return
@@ -122,3 +127,4 @@ enum APICallError: Error, CustomNSError {
         [NSLocalizedDescriptionKey: localizedDescription]
     }
 }
+

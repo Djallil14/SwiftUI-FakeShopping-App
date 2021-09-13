@@ -12,24 +12,47 @@ struct ProductCarousel: View {
     @EnvironmentObject var cart: CartViewModel
     let products: [Product]
     @State private var product: Product? = nil
+    @State private var currentIndex: Int = 0
+    private let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    init(products: [Product]) {
+        self.products = products
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(Color.darkText)
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor(Color.secondaryBackground)
+    }
     var body: some View {
-        ScrollView(.horizontal,showsIndicators: false){
-            HStack(spacing: 20){
-                ForEach(products){product in
+        VStack(spacing:0) {
+            TabView(selection: $currentIndex){
+                ForEach(0..<products.count, id: \.self){index in
                     Button(action:{
                         withAnimation{
-                            self.product = product
+                            self.product = products[index]
                         }
                     }){
-                        ProductCarouselCard(product: product)
+                        ProductCarouselCard(product: products[index])
                             .frame(width: (screenSize.width - 24))
                             .shadow(color: .darkText.opacity(0.1), radius: 3, x: 1, y: 2)
                     }
+                    .tag(index)
                 }
-            }.padding(.leading, 16)
-            .padding(.vertical, 8)
+            }
+            .frame(height: 220)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             .sheet(item: $product){product in
                 ProductView(product: product).environmentObject(cart)
+            }
+            .onReceive(timer) { input in
+                animateCarousel()
+            }
+        }
+    }
+    func animateCarousel(){
+        if currentIndex <= 3 {
+            withAnimation{
+            currentIndex += 1
+            }
+        } else {
+            withAnimation{
+            currentIndex = 0
             }
         }
     }
@@ -40,3 +63,4 @@ struct ProductCarousel_Previews: PreviewProvider {
         ProductCarousel(products: Product.sampleProducts)
     }
 }
+
