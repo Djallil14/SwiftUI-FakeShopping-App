@@ -13,10 +13,10 @@ struct ProfilButtons: View {
         VStack {
             NavigationLink(destination: ZStack {
                 Color.background.edgesIgnoringSafeArea(.all)
-                Text("Update Informations")
+                Text("Update Account")
             }){
                 HStack {
-                    Text("Update Informations")
+                    Text("Update Account")
                     Image(systemName: "slider.horizontal.3")
                 }.font(.headline)
                 .padding()
