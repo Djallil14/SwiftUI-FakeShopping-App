@@ -47,7 +47,6 @@
 		9DACF9B826E99DFB00AD45B7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9B726E99DFB00AD45B7 /* LoginView.swift */; };
 		9DACF9BD26E9B26200AD45B7 /* LoginLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9BC26E9B26200AD45B7 /* LoginLottieView.swift */; };
 		9DACF9C326EA55FE00AD45B7 /* shoppingCart.json in Resources */ = {isa = PBXBuildFile; fileRef = 9DACF9C226EA55FE00AD45B7 /* shoppingCart.json */; };
-		9DACF9C526EA5B5700AD45B7 /* TestTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9C426EA5B5700AD45B7 /* TestTextField.swift */; };
 		9DACF9ED26EBA9A000AD45B7 /* ModerneShoppingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9EC26EBA9A000AD45B7 /* ModerneShoppingTests.swift */; };
 		9DACF9F526EBA9DF00AD45B7 /* ProductListObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9F426EBA9DF00AD45B7 /* ProductListObjectTest.swift */; };
 		9DACF9F826EBAAB900AD45B7 /* MockAPIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF9F726EBAAB900AD45B7 /* MockAPIServices.swift */; };
@@ -118,7 +117,6 @@
 		9DACF9B726E99DFB00AD45B7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9DACF9BC26E9B26200AD45B7 /* LoginLottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLottieView.swift; sourceTree = "<group>"; };
 		9DACF9C226EA55FE00AD45B7 /* shoppingCart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shoppingCart.json; sourceTree = "<group>"; };
-		9DACF9C426EA5B5700AD45B7 /* TestTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTextField.swift; sourceTree = "<group>"; };
 		9DACF9EA26EBA9A000AD45B7 /* ModerneShoppingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModerneShoppingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DACF9EC26EBA9A000AD45B7 /* ModerneShoppingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModerneShoppingTests.swift; sourceTree = "<group>"; };
 		9DACF9EE26EBA9A000AD45B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -306,7 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				9DACF9B726E99DFB00AD45B7 /* LoginView.swift */,
-				9DACF9C426EA5B5700AD45B7 /* TestTextField.swift */,
 				9DACF9A926E677CA00AD45B7 /* LoggedInView.swift */,
 				9DACF9AF26E7139400AD45B7 /* ProfilButtons.swift */,
 				9DACF9B926E9B23B00AD45B7 /* LottieFile */,
@@ -503,7 +500,6 @@
 				9DACF9B226E7E96600AD45B7 /* CheckOutView.swift in Sources */,
 				9DACFA0826ED38F000AD45B7 /* FillAndStrokeShape.swift in Sources */,
 				9DACF95A26E1C4D300AD45B7 /* CartView.swift in Sources */,
-				9DACF9C526EA5B5700AD45B7 /* TestTextField.swift in Sources */,
 				9DFC832526EDC280003EE456 /* APIServices.swift in Sources */,
 				9DACF95026E1494B00AD45B7 /* ProductListItem.swift in Sources */,
 				9DACF9A326E6729800AD45B7 /* ProductLoading.swift in Sources */,

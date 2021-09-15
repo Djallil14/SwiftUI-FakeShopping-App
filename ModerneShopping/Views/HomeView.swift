@@ -20,8 +20,8 @@ struct HomeView: View {
                     VStack(alignment: .center) {
                         Text("Hello \(user.user?.results[0].name.first ?? "")! \n Enjoy your shopping 🥳")
                             .font(.title).bold()
+                            .foregroundColor(.darkText)
                             .multilineTextAlignment(.center)
-                            .blendMode(.overlay)
                             .padding()
                         CustomPicker(choosenCategory: $pickedCategory)
                             .onChange(of: pickedCategory, perform: { value in
