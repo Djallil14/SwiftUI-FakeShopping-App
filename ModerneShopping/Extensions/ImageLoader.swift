@@ -25,7 +25,7 @@ class ImageLoader: ObservableObject {
             return
         }
         
-        DispatchQueue.global(qos: .background).async { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             do {
                 let data = try Data(contentsOf: url)
