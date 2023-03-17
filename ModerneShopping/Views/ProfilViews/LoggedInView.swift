@@ -52,13 +52,15 @@ struct HeaderLoggedInView: View {
             ZStack{
                 Circle().fill(Color.secondaryBackground)
                     .frame(width: 90, height: 90)
-                if let image = imageLoader.image{
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                        .clipShape(Circle())
-                        .padding(8)
-                }
+                //if let image = imageLoader.image{
+//                    Image(uiImage: image)
+//                        .resizable()
+//                        .frame(width: 80, height: 80)
+//                        .clipShape(Circle())
+//                        .padding(8)
+                    AsyncImage(url: URL(string:user.picture.large)!, scale: 3.0)
+                      .scaledToFit()
+                //}
             }
             .padding()
             VStack(alignment: .leading) {
@@ -73,7 +75,7 @@ struct HeaderLoggedInView: View {
             Spacer()
         }.padding()
         .onAppear{
-            imageLoader.loadImage(with: URL(string:user.picture.large)!)
+            //imageLoader.loadImage(with: URL(string:user.picture.large)!)
         }
     }
 }

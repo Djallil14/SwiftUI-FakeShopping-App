@@ -16,7 +16,9 @@ class APIServices: APIServicesProtocol {
     
     /// Shared Signleton of the api calls
     static let shared = APIServices()
-    private let baseURL = "https://fakestoreapi.com/products"
+    
+    //private let baseURL = "https://fakestoreapi.com/products"
+    private let baseURL = "http://localhost:8765/products"
     private let userURL = "https://randomuser.me/api/"
     private let apiCall = URLSession.shared
     

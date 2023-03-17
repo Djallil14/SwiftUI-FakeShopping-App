@@ -56,26 +56,28 @@ struct ProductCarouselImage: View {
                 .overlay(
                     ZStack {
                         ProgressView()
-                        if imageLoader.image != nil {
+                        //if imageLoader.image != nil {
                             HStack {
                                 Spacer()
-                                Image(uiImage: imageLoader.image!)
-                                    .resizable()
-                                    .compositingGroup()
-                                    .clipped(antialiased: true)
-                                    .aspectRatio(contentMode: .fill)
-                                    .clipped()
-                                    .cornerRadius(12)
-                                    .padding()
+                                AsyncImage(url: imageURL, scale: 6.0)
+                                    .scaledToFit()
+//                                Image(uiImage: imageLoader.image!)
+//                                    .resizable()
+//                                    .compositingGroup()
+//                                    .clipped(antialiased: true)
+//                                    .aspectRatio(contentMode: .fill)
+//                                    .clipped()
+//                                    .cornerRadius(12)
+//                                    .padding()
                                 Spacer()
                             }
-                        }
+                        //}
                     }
                 )
         }
         .cornerRadius(12)
         .onAppear {
-            imageLoader.loadImage(with: imageURL)
+            //imageLoader.loadImage(with: imageURL)
         }
     }
 }

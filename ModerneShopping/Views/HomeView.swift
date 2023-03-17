@@ -110,7 +110,7 @@ struct leadingBarItem: View {
                 .overlay(
                     Group{
                         if let user = self.user {
-                            if let image = imageLoader.image{
+                            if let image = imageLoader.image {
                                 Image(uiImage: image)
                                     .resizable()
                                     .clipped()
@@ -129,7 +129,8 @@ struct leadingBarItem: View {
                 .overlay(Circle().stroke(lineWidth: 2).foregroundColor(Color.darkText))
         }.onAppear{
             if let user = self.user{
-                imageLoader.loadImage(with: URL(string: user.picture.thumbnail)!)
+                AsyncImage(url: URL(string: user.picture.thumbnail)!, scale: 3.0)
+               //imageLoader.loadImage(with: URL(string: user.picture.thumbnail)!)
             }
         }
     }

@@ -49,23 +49,25 @@ struct SmallProductImage: View {
                 .overlay(
                     ZStack {
                         ProgressView()
-                        if imageLoader.image != nil {
+                        //if imageLoader.image != nil {
                             HStack {
                                 Spacer()
-                                Image(uiImage: imageLoader.image!)
-                                    .resizable()
-                                    .compositingGroup()
-                                    .aspectRatio(contentMode: .fit)
+//                                Image(uiImage: imageLoader.image!)
+//                                    .resizable()
+//                                    .compositingGroup()
+//                                    .aspectRatio(contentMode: .fit)
+                                AsyncImage(url: imageURL, scale: 5.0)
+                                    .scaledToFit()
                                 Spacer()
                             }
-                        }
+                       // }
                     }.padding()
                 )
         }
         .cornerRadius(12)
         .shadow(color: .gray, radius: 2, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/)
         .onAppear {
-            imageLoader.loadImage(with: imageURL)
+            //imageLoader.loadImage(with: imageURL)
         }
     }
 }

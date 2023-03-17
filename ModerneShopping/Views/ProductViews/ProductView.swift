@@ -9,13 +9,24 @@ import SwiftUI
 
 struct ProductView: View {
     @EnvironmentObject var cart: CartViewModel
+    
     @Environment(\.presentationMode) var presentation
+    
     // deprecated in iOS 15 we should use @Environment(.\dismiss) var dismiss
     @State private var quantity: Int = 1
+    @State private var selectedColor: Color = Color(hex: "FDD9B5")
+    @State private var selectedName: String = ""
+    @State private var selectedImage: String = ""
+           
     let product: Product
+    
+   
+    
     var body: some View {
         ZStack {
             Color.background.edgesIgnoringSafeArea(.bottom)
+            let selectedColor = Color(hex: product.defaultColor)
+                     
             VStack {
                 Spacer()
                 HStack{
@@ -27,7 +38,8 @@ struct ProductView: View {
                     }
                     Spacer()
                 }.padding()
-                ProductImage(imageURL: product.imageURL).padding(.top)
+                ProductImage(imageURL: selectedImage != "" ? URL(string: selectedImage)! : product.imageURL)
+                    .padding(.top)
                     .environmentObject(cart)
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.bottom)
@@ -52,12 +64,25 @@ struct ProductView: View {
                             .padding()
                             .multilineTextAlignment(.center)
                         Spacer()
+                                               
                         VStack(spacing: 0) {
+                            VStack {
+                                //Text(selectedName == "" ? product.defaultColorName : selectedName)
+                                HStack(spacing: 2) {
+                                    CustomColorPicker(selectedColor: $selectedColor, selectedName: $selectedName, selectedIImage: $selectedImage, colors: product.colors)
+                                            .padding()
+                                }
+                                .frame(height: 30)
+                            }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color.secondaryBackground)
+                                                   
                             Text("Quantity").font(.headline)
                             Picker(selection: $quantity, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/, content: {
-                                ForEach(1...10, id:\.self){quantity in
-                                    Text("\(quantity)").tag(quantity)
-                                }
+                                ForEach(1...10, id:\.self) { quantity in
+                                    Text("\(quantity)")
+                                        .tag(quantity)
+                                  }
                                 
                             }).pickerStyle(SegmentedPickerStyle())
                             .padding()
@@ -78,6 +103,37 @@ struct ProductView: View {
     }
 }
 
+struct CustomColorPicker: View {
+    
+    
+    @Binding var selectedColor: Color
+    @Binding var selectedName: String
+    @Binding var selectedIImage: String
+       
+    let colors: [CustomColor]
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 20) {
+                    ForEach(colors, id: \.self) { color in
+                        Button(action: {
+                            self.selectedColor = Color(hex: color.hex)
+                            self.selectedName = color.name
+                            self.selectedIImage = color.image
+                            
+                        }) {
+                            Image(systemName: self.selectedColor == Color(hex: color.hex) ? "checkmark.circle.fill" : "circle.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .accessibilityLabel(color.name)
+                        }.accentColor(Color(hex: color.hex))
+                    }
+                }
+                .padding()
+            }
+    }
+}
+
 struct ProductImage: View {
     @EnvironmentObject var cart: CartViewModel
     @StateObject private var imageLoader = ImageLoader()
@@ -91,25 +147,23 @@ struct ProductImage: View {
                 .overlay(
                     ZStack {
                         ProgressView()
-                        if imageLoader.image != nil {
+                        //if imageLoader.image != nil {
                             HStack {
                                 Spacer()
-                                Image(uiImage: imageLoader.image!)
-                                    .resizable()
-                                    .compositingGroup()
-                                    .clipped(antialiased: true)
-                                    .aspectRatio(contentMode: .fit)
-                                    .cornerRadius(12)
-                                    .padding()
+                                AsyncImage(url: imageURL, scale: 3.0)
+                                    .scaledToFit()
+                                    .foregroundColor(.red)
+                                    
                                 Spacer()
+                                
                             }
-                        }
+                        //}
                     }
                 )
         }
         .cornerRadius(12)
         .onAppear {
-            imageLoader.loadImage(with: imageURL)
+           // imageLoader.loadImage(with: imageURL)
         }
     }
 }

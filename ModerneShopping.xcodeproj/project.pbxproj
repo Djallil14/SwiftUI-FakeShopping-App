@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95ABDA9529AAEB0C0097A367 /* Color+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ABDA9429AAEB0C0097A367 /* Color+Codable.swift */; };
 		9DACF93326E0297B00AD45B7 /* ModerneShoppingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF93226E0297B00AD45B7 /* ModerneShoppingApp.swift */; };
 		9DACF93526E0297B00AD45B7 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF93426E0297B00AD45B7 /* ProductView.swift */; };
 		9DACF93726E0297C00AD45B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DACF93626E0297C00AD45B7 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		95ABDA9429AAEB0C0097A367 /* Color+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Codable.swift"; sourceTree = "<group>"; };
 		9DACF92F26E0297B00AD45B7 /* ModerneShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModerneShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DACF93226E0297B00AD45B7 /* ModerneShoppingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModerneShoppingApp.swift; sourceTree = "<group>"; };
 		9DACF93426E0297B00AD45B7 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				9DACF94426E02B2700AD45B7 /* Bundle+LoadAndDecode.swift */,
 				9DACF96F26E27D3B00AD45B7 /* Extension+Colors.swift */,
 				9DACF94826E02E4400AD45B7 /* ImageLoader.swift */,
+				95ABDA9429AAEB0C0097A367 /* Color+Codable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				9DACF95426E14C2C00AD45B7 /* HomeView.swift in Sources */,
 				9DACF94226E02A1B00AD45B7 /* Product.swift in Sources */,
 				9DACF96826E1CEE700AD45B7 /* CustomPicker.swift in Sources */,
+				95ABDA9529AAEB0C0097A367 /* Color+Codable.swift in Sources */,
 				9DACF9B426E940E600AD45B7 /* ProductCarousel.swift in Sources */,
 				9DACF95E26E1C55400AD45B7 /* CartListView.swift in Sources */,
 				9DACF94C26E0373900AD45B7 /* ShoppingButtonStyle.swift in Sources */,
@@ -680,7 +684,7 @@
 				DEVELOPMENT_TEAM = PR37X8G2V5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ModerneShopping/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -702,7 +706,7 @@
 				DEVELOPMENT_TEAM = PR37X8G2V5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ModerneShopping/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
