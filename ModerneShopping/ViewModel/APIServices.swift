@@ -18,7 +18,7 @@ class APIServices: APIServicesProtocol {
     static let shared = APIServices()
     
     //private let baseURL = "https://fakestoreapi.com/products"
-    private let baseURL = "http://localhost:8765/products"
+    private let baseURL = "https://fake-shopping-api.herokuapp.com/products"
     private let userURL = "https://randomuser.me/api/"
     private let apiCall = URLSession.shared
     

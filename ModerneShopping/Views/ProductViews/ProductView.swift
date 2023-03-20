@@ -28,7 +28,7 @@ struct ProductView: View {
             let selectedColor = Color(hex: product.defaultColor)
                      
             VStack {
-                Spacer()
+                //Spacer()
                 HStack{
                     Button(action:{presentation.wrappedValue.dismiss()}){
                         Image(systemName: "xmark")
@@ -39,7 +39,7 @@ struct ProductView: View {
                     Spacer()
                 }.padding()
                 ProductImage(imageURL: selectedImage != "" ? URL(string: selectedImage)! : product.imageURL)
-                    .padding(.top)
+                    //.padding(.top)
                     .environmentObject(cart)
                 ZStack {
                     Color.background.edgesIgnoringSafeArea(.bottom)
@@ -49,7 +49,7 @@ struct ProductView: View {
                         Text(product.title)
                             .font(.headline)
                             .multilineTextAlignment(.center)
-                            .padding(24)
+                            //.padding(24)
                         Text("\(product.price.format(f: ".02"))$")
                             .font(.headline)
                         HStack(spacing: 2) {
@@ -58,12 +58,12 @@ struct ProductView: View {
                                 .foregroundColor(.secondary)
                                 .offset(y: 3)
                         }
-                        .padding(8)
+                        //.padding(8)
                         Text(product.description).italic()
                             .foregroundColor(.secondary)
-                            .padding()
+                            //.padding()
                             .multilineTextAlignment(.center)
-                        Spacer()
+                //        Spacer()
                                                
                         VStack(spacing: 0) {
                             VStack {
@@ -72,9 +72,9 @@ struct ProductView: View {
                                     CustomColorPicker(selectedColor: $selectedColor, selectedName: $selectedName, selectedIImage: $selectedImage, colors: product.colors)
                                             .padding()
                                 }
-                                .frame(height: 30)
+                                .frame(height: 20)
                             }
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            //.frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color.secondaryBackground)
                                                    
                             Text("Quantity").font(.headline)
@@ -124,7 +124,7 @@ struct CustomColorPicker: View {
                         }) {
                             Image(systemName: self.selectedColor == Color(hex: color.hex) ? "checkmark.circle.fill" : "circle.fill")
                                 .resizable()
-                                .frame(width: 30, height: 30)
+                                .frame(width: 20, height: 20)
                                 .accessibilityLabel(color.name)
                         }.accentColor(Color(hex: color.hex))
                     }
@@ -150,7 +150,7 @@ struct ProductImage: View {
                         //if imageLoader.image != nil {
                             HStack {
                                 Spacer()
-                                AsyncImage(url: imageURL, scale: 3.0)
+                                AsyncImage(url: imageURL, scale: 4.0)
                                     .scaledToFit()
                                     .foregroundColor(.red)
                                     

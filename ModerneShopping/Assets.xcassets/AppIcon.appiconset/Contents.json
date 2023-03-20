@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Icon-App-40x40@1x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"

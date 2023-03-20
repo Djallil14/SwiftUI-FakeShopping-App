@@ -30,6 +30,12 @@ struct MainView: View {
                     Image(systemName: "person")
                     Text("Profil")
                 }
+            StoreView()
+                .environmentObject(user)
+                .tabItem {
+                    Image(systemName: "store")
+                    Text("store")
+                }
         }
         .zIndex(10)
     }

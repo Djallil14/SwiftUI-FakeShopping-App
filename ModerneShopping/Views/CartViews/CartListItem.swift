@@ -70,7 +70,7 @@ struct SmallCartListItemImage: View {
 //                                    .resizable()
 //                                    .compositingGroup()
 //                                    .aspectRatio(contentMode: .fit)
-                                AsyncImage(url: imageURL, scale: 3.0)
+                                AsyncImage(url: imageURL, scale: 7.0)
                                     .scaledToFit()
                                 Spacer()
                             }

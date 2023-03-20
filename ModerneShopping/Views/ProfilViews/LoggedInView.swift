@@ -18,13 +18,12 @@ struct LoggedInView: View {
                 Color.background.edgesIgnoringSafeArea(.all)
                 VStack(alignment: .center) {
                     HeaderLoggedInView(user: user)
-                        .padding(.bottom)
-                    Divider()
+                        .padding(.top)
                     ProfilButtons().environmentObject(users)
-                    Spacer()
+                    //Spacer()
                     MapView(region: $region, user: user)
                         .shadow(color: .darkText.opacity(0.2), radius: 4, x: 1, y: 2)
-                    Spacer()
+                    //Spacer()
                 }
                 .navigationBarBackButtonHidden(false)
                 .navigationBarTitleDisplayMode(.inline)
@@ -41,6 +40,7 @@ struct LoggedInView: View {
 struct LoggedInView_Previews: PreviewProvider {
     static var previews: some View {
         LoggedInView(user: UserAPIResults.sampleUsers.results[0])
+            .environmentObject(UserViewModel())
     }
 }
 
@@ -52,12 +52,6 @@ struct HeaderLoggedInView: View {
             ZStack{
                 Circle().fill(Color.secondaryBackground)
                     .frame(width: 90, height: 90)
-                //if let image = imageLoader.image{
-//                    Image(uiImage: image)
-//                        .resizable()
-//                        .frame(width: 80, height: 80)
-//                        .clipShape(Circle())
-//                        .padding(8)
                     AsyncImage(url: URL(string:user.picture.large)!, scale: 3.0)
                       .scaledToFit()
                 //}
