@@ -33,8 +33,8 @@ struct MainView: View {
             StoreView()
                 .environmentObject(user)
                 .tabItem {
-                    Image(systemName: "store")
-                    Text("store")
+                    Image(systemName: "building")
+                    Text("Store")
                 }
         }
         .zIndex(10)

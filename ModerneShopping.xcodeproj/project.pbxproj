@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9524A1D029C7ADD400428089 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524A1CF29C7ADD400428089 /* StoreView.swift */; };
 		95ABDA9529AAEB0C0097A367 /* Color+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ABDA9429AAEB0C0097A367 /* Color+Codable.swift */; };
+		95B6FBAF29C94C0500FD6839 /* CustomARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6FBAE29C94C0500FD6839 /* CustomARView.swift */; };
+		95B6FBB129C94C3800FD6839 /* ARContainerViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6FBB029C94C3800FD6839 /* ARContainerViewManager.swift */; };
+		95B6FBB329C94C8D00FD6839 /* ARContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6FBB229C94C8D00FD6839 /* ARContainerView.swift */; };
 		9DACF93326E0297B00AD45B7 /* ModerneShoppingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF93226E0297B00AD45B7 /* ModerneShoppingApp.swift */; };
 		9DACF93526E0297B00AD45B7 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DACF93426E0297B00AD45B7 /* ProductView.swift */; };
 		9DACF93726E0297C00AD45B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DACF93626E0297C00AD45B7 /* Assets.xcassets */; };
@@ -79,6 +82,9 @@
 /* Begin PBXFileReference section */
 		9524A1CF29C7ADD400428089 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		95ABDA9429AAEB0C0097A367 /* Color+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Codable.swift"; sourceTree = "<group>"; };
+		95B6FBAE29C94C0500FD6839 /* CustomARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomARView.swift; sourceTree = "<group>"; };
+		95B6FBB029C94C3800FD6839 /* ARContainerViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARContainerViewManager.swift; sourceTree = "<group>"; };
+		95B6FBB229C94C8D00FD6839 /* ARContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARContainerView.swift; sourceTree = "<group>"; };
 		9DACF92F26E0297B00AD45B7 /* ModerneShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModerneShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DACF93226E0297B00AD45B7 /* ModerneShoppingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModerneShoppingApp.swift; sourceTree = "<group>"; };
 		9DACF93426E0297B00AD45B7 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
@@ -163,6 +169,9 @@
 			isa = PBXGroup;
 			children = (
 				9524A1CF29C7ADD400428089 /* StoreView.swift */,
+				95B6FBAE29C94C0500FD6839 /* CustomARView.swift */,
+				95B6FBB029C94C3800FD6839 /* ARContainerViewManager.swift */,
+				95B6FBB229C94C8D00FD6839 /* ARContainerView.swift */,
 			);
 			path = StoreViews;
 			sourceTree = "<group>";
@@ -509,6 +518,7 @@
 				9DACF97026E27D3B00AD45B7 /* Extension+Colors.swift in Sources */,
 				9DACF96A26E1DB6400AD45B7 /* CartViewModel.swift in Sources */,
 				9DACF96426E1CBEA00AD45B7 /* LoadingView.swift in Sources */,
+				95B6FBB129C94C3800FD6839 /* ARContainerViewManager.swift in Sources */,
 				9DACF94526E02B2700AD45B7 /* Bundle+LoadAndDecode.swift in Sources */,
 				9DACF9AA26E677CA00AD45B7 /* LoggedInView.swift in Sources */,
 				9DACF94926E02E4400AD45B7 /* ImageLoader.swift in Sources */,
@@ -525,10 +535,12 @@
 				9DACF95C26E1C54700AD45B7 /* CartListItem.swift in Sources */,
 				9DACF9A026E6715600AD45B7 /* CartLoadingView.swift in Sources */,
 				9DACF9B626E9410F00AD45B7 /* ProductCarouselCard.swift in Sources */,
+				95B6FBAF29C94C0500FD6839 /* CustomARView.swift in Sources */,
 				9DACF9BD26E9B26200AD45B7 /* LoginLottieView.swift in Sources */,
 				9DACF93326E0297B00AD45B7 /* ModerneShoppingApp.swift in Sources */,
 				9DACF99926E670BB00AD45B7 /* CartLoading.swift in Sources */,
 				9DACF9A726E6757800AD45B7 /* UserViewModel.swift in Sources */,
+				95B6FBB329C94C8D00FD6839 /* ARContainerView.swift in Sources */,
 				9DACF9B826E99DFB00AD45B7 /* LoginView.swift in Sources */,
 				9524A1D029C7ADD400428089 /* StoreView.swift in Sources */,
 				9DACF99626E5C95500AD45B7 /* User.swift in Sources */,
