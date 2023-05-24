@@ -12,7 +12,6 @@ private let _imageCache = NSCache<AnyObject, AnyObject>()
 
 /// Load an image and cache it
 class ImageLoader: ObservableObject {
-    
     @Published var image: UIImage?
     @Published var isLoading = false
     
@@ -26,19 +25,30 @@ class ImageLoader: ObservableObject {
         }
         
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            do {
-                let data = try Data(contentsOf: url)
-                guard let image = UIImage(data: data) else {
+            guard let self else { return }
+            let session = URLSession.shared
+            let task = session.dataTask(with: url) { data, _, error in
+                if let error {
+                    print("Error: \(error)")
                     return
                 }
-                self.imageCache.setObject(image, forKey: urlString as AnyObject)
-                DispatchQueue.main.async { [weak self] in
-                    self?.image = image
+                    
+                guard let data else {
+                    print("Failed to get data")
+                    return
                 }
-            } catch {
-                print(error.localizedDescription)
+                    
+                DispatchQueue.main.async {
+                    guard let image = UIImage(data: data) else {
+                        return
+                    }
+                    self.imageCache.setObject(image, forKey: urlString as AnyObject)
+                    DispatchQueue.main.async { [weak self] in
+                        self?.image = image
+                    }
+                }
             }
+            task.resume()
         }
     }
 }
